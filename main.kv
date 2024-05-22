@@ -1,0 +1,23 @@
+MDNavigationLayout:
+    MDNavigationDrawer:
+        id: nav_drawer
+        ContentNavigationDrawer:
+            id: content_drawer
+            screen_manager: screen_manager
+            nav_drawer: nav_drawer
+
+    MDNavigationDrawer:
+        id: right_nav_drawer
+        anchor: 'right'
+        RightContentNavigationDrawer:
+            id: right_content_drawer
+            screen_manager: screen_manager
+            nav_drawer: right_nav_drawer
+
+    ScreenManager:
+        id: screen_manager
+        HomeScreen:
+        SettingsScreen:
+        ProfileScreen:
+        Screen1:
+        Screen2:

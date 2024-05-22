@@ -1,0 +1,61 @@
+<ContentNavigationDrawer>:
+    orientation: 'vertical'
+    padding: '8dp'
+    spacing: '8dp'
+    canvas.before:
+        Color:
+            rgba: 0.1, 0.1, 0.1, 1  # Darker background color
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    AnchorLayout:
+        anchor_x: 'left'
+        size_hint_y: None
+        height: avatar.height
+
+        Image:
+            id: avatar
+            size_hint: None, None
+            size: '56dp', '56dp'
+            source: 'kivymd_logo.png'
+
+    MDLabel:
+        text: 'KivyMD library'
+        font_style: 'Button'
+        theme_text_color: 'Custom'
+        text_color: 1, 1, 1, 1  # White font color
+        size_hint_y: None
+        height: self.texture_size[1]
+
+    MDLabel:
+        text: 'kivydevelopment@gmail.com'
+        font_style: 'Caption'
+        theme_text_color: 'Custom'
+        text_color: 1, 1, 1, 1  # White font color
+        size_hint_y: None
+        height: self.texture_size[1]
+
+    ScrollView:
+        MDList:
+            OneLineIconListItem:
+                text: "Home"
+                theme_text_color: 'Custom'
+                text_color: 1, 1, 1, 1  # White font color
+                on_release:
+                    root.nav_drawer.set_state("close")
+                    root.screen_manager.current = 'home'
+            OneLineIconListItem:
+                text: "Settings"
+                theme_text_color: 'Custom'
+                text_color: 1, 1, 1, 1  # White font color
+                on_release:
+                    root.nav_drawer.set_state("close")
+                    root.screen_manager.current = 'settings'
+            OneLineIconListItem:
+                text: "Profile"
+                theme_text_color: 'Custom'
+                text_color: 1, 1, 1, 1  # White font color
+                on_release:
+                    root.nav_drawer.set_state("close")
+                    root.screen_manager.current = 'profile'
