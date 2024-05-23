@@ -1,10 +1,10 @@
 <SettingsScreen>:
-    name: 'settings'
+    name: 'settings'  # Set the name of the screen
     BoxLayout:
-        orientation: 'vertical'
+        orientation: 'vertical'  # Set the orientation to vertical
         MDTopAppBar:
-            title: "Settings"
-            left_action_items: [["menu", lambda x: app.root.ids.nav_drawer.set_state("open")]]
-            right_action_items: [["menu", lambda x: app.root.ids.right_nav_drawer.set_state("open")]]
+            title: "Settings"  # Set the title of the top app bar
+            left_action_items: [["menu", lambda x: app.root.ids.nav_drawer.set_state("open")]]  # Add menu button to open left navigation drawer
+            right_action_items: [["menu", lambda x: app.root.ids.settings_right_nav_drawer.set_state("open")]]  # Updated ID for the settings right navigation drawer
         MDScreenManager:
-            id: settings_manager
+            id: settings_manager  # Set the ID for the screen manager

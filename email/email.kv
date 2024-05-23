@@ -1,0 +1,53 @@
+<EmailScreen>:
+    name: 'email'  # Set the name of the screen
+    BoxLayout:
+        orientation: 'vertical'  # Set the orientation to vertical
+        padding: dp(20)  # Set padding
+        spacing: dp(20)  # Set spacing
+        MDLabel:
+            text: "Welcome to Social Hockey"  # Welcome message
+            halign: 'center'  # Center the label horizontally
+            font_style: 'H4'  # Set font style
+        MDLabel:
+            text: "Please Join to Better Your Hockey Experience"  # Additional message
+            halign: 'center'  # Center the label horizontally
+            font_style: 'Subtitle1'  # Set font style
+        Widget:
+            size_hint_y: None
+            height: dp(50)  # Add spacing between the welcome message and the email field
+        MDTextField:
+            id: email_field
+            hint_text: "Enter your email"  # Hint text for the email field
+            helper_text: "Email format: user@example.com"  # Helper text displayed when the field is focused
+            helper_text_mode: "on_focus"  # Show helper text only when the field is focused
+            pos_hint: {"center_x": 0.5}  # Center the email field horizontally
+            size_hint: (0.8, None)  # Set size hint
+            height: dp(40)  # Set height
+            on_text:
+                root.email = self.text  # Update the email property with the text field input
+                submit_btn.disabled = not (root.validate_email() and root.validate_password())  # Enable/disable submit button based on email validation
+        MDTextField:
+            id: password_field
+            hint_text: "Enter your password"  # Hint text for the password field
+            password: True  # Mask the password input
+            pos_hint: {"center_x": 0.5}  # Center the password field horizontally
+            size_hint: (0.8, None)  # Set size hint
+            height: dp(40)  # Set height
+            on_text:
+                root.password = self.text  # Update the password property with the text field input
+                submit_btn.disabled = not (root.validate_email() and root.validate_password())  # Enable/disable submit button based on password presence
+        Widget:
+            size_hint_y: None
+            height: dp(20)  # Add spacing between the password field and the submit button
+        MDRaisedButton:
+            id: submit_btn
+            text: "Submit"  # Text for the submit button
+            pos_hint: {"center_x": 0.5}  # Center the submit button horizontally
+            size_hint: (0.5, None)  # Set size hint
+            height: dp(40)  # Set height
+            disabled: True  # Initially disable the submit button
+            on_release:
+                root.submit_email()  # Call submit_email method on button release
+        Widget:
+            size_hint_y: None
+            height: dp(50)  # Add spacing below the submit button to keep it above the bottom

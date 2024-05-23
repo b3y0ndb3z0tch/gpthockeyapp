@@ -1,23 +1,28 @@
+# main.kv
+# This file defines the main layout and screen management for the application.
+
 MDNavigationLayout:
     MDNavigationDrawer:
         id: nav_drawer
         ContentNavigationDrawer:
             id: content_drawer
-            screen_manager: screen_manager
-            nav_drawer: nav_drawer
+            screen_manager: screen_manager  # Reference the main screen manager
+            nav_drawer: nav_drawer  # Reference this navigation drawer
 
     MDNavigationDrawer:
-        id: right_nav_drawer
-        anchor: 'right'
-        RightContentNavigationDrawer:
+        id: settings_right_nav_drawer  # Updated ID for the settings right navigation drawer
+        anchor: 'right'  # Set the anchor to the right side
+        SettingsRightNavigationDrawer:
             id: right_content_drawer
-            screen_manager: screen_manager
-            nav_drawer: right_nav_drawer
+            screen_manager: screen_manager  # Reference the main screen manager
+            nav_drawer: settings_right_nav_drawer  # Reference this navigation drawer
 
     ScreenManager:
         id: screen_manager
-        HomeScreen:
-        SettingsScreen:
-        ProfileScreen:
-        Screen1:
-        Screen2:
+        HomeScreen:  # Add HomeScreen to the screen manager
+        ProfileScreen:  # Add ProfileScreen to the screen manager
+        EmailScreen:  # Add EmailScreen to the screen manager
+        VerificationScreen:  # Add VerificationScreen to the screen manager
+        SettingsScreen:  # Add SettingsScreen to the screen manager
+        Screen1:  # Add Screen1 to the screen manager
+        Screen2:  # Add Screen2 to the screen manager

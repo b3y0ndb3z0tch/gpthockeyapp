@@ -1,10 +1,161 @@
+# profile/profile.kv
+# This file defines the layout for the ProfileScreen.
+
 <ProfileScreen>:
-    name: 'profile'
+    name: 'profile'  # Set the name of the screen
     BoxLayout:
-        orientation: 'vertical'
+        orientation: 'vertical'  # Set the orientation to vertical
+        padding: dp(20)  # Set padding around the screen
+        spacing: dp(10)  # Set spacing between elements
         MDTopAppBar:
-            title: "Profile"
-            left_action_items: [["menu", lambda x: app.root.ids.nav_drawer.set_state("open")]]
-        MDLabel:
-            text: "Welcome to the Profile Screen"
-            halign: 'center'
+            title: "PROFILE"  # Title at the top of the screen
+            pos_hint: {"top": 1}  # Position the title at the top
+        ScrollView:
+            MDBoxLayout:
+                orientation: 'vertical'  # Set the orientation to vertical
+                padding: dp(20)  # Set padding around the elements
+                spacing: dp(20)  # Set spacing between elements
+                adaptive_height: True  # Adjust height based on content
+
+                MDCard:
+                    orientation: 'vertical'  # Set the orientation to vertical
+                    size_hint: None, None  # Do not adjust size based on parent
+                    size: dp(300), dp(80)  # Set size of the card
+                    pos_hint: {"center_x": 0.5}  # Center the card horizontally
+                    padding: dp(10)  # Set padding inside the card
+                    spacing: dp(10)  # Set spacing between elements in the card
+                    MDLabel:
+                        text: "Position"  # Title for the position field
+                        theme_text_color: "Secondary"  # Set text color
+                    MDTextField:
+                        hint_text: "Select your position"  # Hint text for the text field
+                        helper_text: "Select your position"  # Helper text for the text field
+                        helper_text_mode: "on_focus"  # Show helper text when focused
+
+                MDCard:
+                    orientation: 'vertical'  # Set the orientation to vertical
+                    size_hint: None, None  # Do not adjust size based on parent
+                    size: dp(300), dp(80)  # Set size of the card
+                    pos_hint: {"center_x": 0.5}  # Center the card horizontally
+                    padding: dp(10)  # Set padding inside the card
+                    spacing: dp(10)  # Set spacing between elements in the card
+                    MDLabel:
+                        text: "Shooting Hand"  # Title for the shooting hand field
+                        theme_text_color: "Secondary"  # Set text color
+                    MDTextField:
+                        hint_text: "Left or Right"  # Hint text for the text field
+                        helper_text: "Left or Right"  # Helper text for the text field
+                        helper_text_mode: "on_focus"  # Show helper text when focused
+
+                MDCard:
+                    orientation: 'vertical'  # Set the orientation to vertical
+                    size_hint: None, None  # Do not adjust size based on parent
+                    size: dp(300), dp(80)  # Set size of the card
+                    pos_hint: {"center_x": 0.5}  # Center the card horizontally
+                    padding: dp(10)  # Set padding inside the card
+                    spacing: dp(10)  # Set spacing between elements in the card
+                    MDLabel:
+                        text: "Height"  # Title for the height field
+                        theme_text_color: "Secondary"  # Set text color
+                    MDTextField:
+                        hint_text: "In feet and inches (e.g., 6'1\")"  # Hint text for the text field
+                        helper_text: "In feet and inches (e.g., 6'1\")"  # Helper text for the text field
+                        helper_text_mode: "on_focus"  # Show helper text when focused
+
+                MDCard:
+                    orientation: 'vertical'  # Set the orientation to vertical
+                    size_hint: None, None  # Do not adjust size based on parent
+                    size: dp(300), dp(80)  # Set size of the card
+                    pos_hint: {"center_x": 0.5}  # Center the card horizontally
+                    padding: dp(10)  # Set padding inside the card
+                    spacing: dp(10)  # Set spacing between elements in the card
+                    MDLabel:
+                        text: "Weight"  # Title for the weight field
+                        theme_text_color: "Secondary"  # Set text color
+                    MDTextField:
+                        hint_text: "In pounds"  # Hint text for the text field
+                        helper_text: "In pounds"  # Helper text for the text field
+                        helper_text_mode: "on_focus"  # Show helper text when focused
+
+                MDCard:
+                    orientation: 'vertical'  # Set the orientation to vertical
+                    size_hint: None, None  # Do not adjust size based on parent
+                    size: dp(300), dp(80)  # Set size of the card
+                    pos_hint: {"center_x": 0.5}  # Center the card horizontally
+                    padding: dp(10)  # Set padding inside the card
+                    spacing: dp(10)  # Set spacing between elements in the card
+                    MDLabel:
+                        text: "Age"  # Title for the age field
+                        theme_text_color: "Secondary"  # Set text color
+                    MDTextField:
+                        hint_text: "In years"  # Hint text for the text field
+                        helper_text: "In years"  # Helper text for the text field
+                        helper_text_mode: "on_focus"  # Show helper text when focused
+
+                MDCard:
+                    orientation: 'vertical'  # Set the orientation to vertical
+                    size_hint: None, None  # Do not adjust size based on parent
+                    size: dp(300), dp(80)  # Set size of the card
+                    pos_hint: {"center_x": 0.5}  # Center the card horizontally
+                    padding: dp(10)  # Set padding inside the card
+                    spacing: dp(10)  # Set spacing between elements in the card
+                    MDLabel:
+                        text: "Experience Level"  # Title for the experience level field
+                        theme_text_color: "Secondary"  # Set text color
+                    MDTextField:
+                        hint_text: "Beginner, Intermediate, Advanced, Professional"  # Hint text for the text field
+                        helper_text: "Beginner, Intermediate, Advanced, Professional"  # Helper text for the text field
+                        helper_text_mode: "on_focus"  # Show helper text when focused
+
+                MDCard:
+                    orientation: 'vertical'  # Set the orientation to vertical
+                    size_hint: None, None  # Do not adjust size based on parent
+                    size: dp(300), dp(80)  # Set size of the card
+                    pos_hint: {"center_x": 0.5}  # Center the card horizontally
+                    padding: dp(10)  # Set padding inside the card
+                    spacing: dp(10)  # Set spacing between elements in the card
+                    MDLabel:
+                        text: "Preferred Rinks"  # Title for the preferred rinks field
+                        theme_text_color: "Secondary"  # Set text color
+                    MDTextField:
+                        hint_text: "List the rinks you frequently play at"  # Hint text for the text field
+                        helper_text: "List the rinks you frequently play at"  # Helper text for the text field
+                        helper_text_mode: "on_focus"  # Show helper text when focused
+
+                MDCard:
+                    orientation: 'vertical'  # Set the orientation to vertical
+                    size_hint: None, None  # Do not adjust size based on parent
+                    size: dp(300), dp(80)  # Set size of the card
+                    pos_hint: {"center_x": 0.5}  # Center the card horizontally
+                    padding: dp(10)  # Set padding inside the card
+                    spacing: dp(10)  # Set spacing between elements in the card
+                    MDLabel:
+                        text: "Favorite Team"  # Title for the favorite team field
+                        theme_text_color: "Secondary"  # Set text color
+                    MDTextField:
+                        hint_text: "Optional"  # Hint text for the text field
+                        helper_text: "Optional"  # Helper text for the text field
+                        helper_text_mode: "on_focus"  # Show helper text when focused
+
+                MDCard:
+                    orientation: 'vertical'  # Set the orientation to vertical
+                    size_hint: None, None  # Do not adjust size based on parent
+                    size: dp(300), dp(80)  # Set size of the card
+                    pos_hint: {"center_x": 0.5}  # Center the card horizontally
+                    padding: dp(10)  # Set padding inside the card
+                    spacing: dp(10)  # Set spacing between elements in the card
+                    MDLabel:
+                        text: "Biography"  # Title for the biography field
+                        theme_text_color: "Secondary"  # Set text color
+                    MDTextField:
+                        hint_text: "A brief description about yourself"  # Hint text for the text field
+                        helper_text: "A brief description about yourself"  # Helper text for the text field
+                        helper_text_mode: "on_focus"  # Show helper text when focused
+
+                MDRaisedButton:
+                    text: "Save"  # Text for the save button
+                    pos_hint: {"center_x": 0.5}  # Center the button horizontally
+                    size_hint: (0.5, None)  # Set size hint for the button
+                    height: dp(40)  # Set height of the button
+                    on_release:
+                        root.save_profile()  # Call save_profile method on button release

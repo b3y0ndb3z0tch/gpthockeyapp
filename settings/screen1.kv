@@ -1,15 +1,15 @@
 <Screen1>:
-    name: 'screen1'
+    name: 'screen1'  # Set the name of the screen
     BoxLayout:
-        orientation: 'vertical'
+        orientation: 'vertical'  # Set the orientation to vertical
         MDTopAppBar:
-            title: "Screen 1"
-            left_action_items: [["menu", lambda x: app.root.ids.nav_drawer.set_state("open")]]
-            right_action_items: [["menu", lambda x: app.root.ids.right_nav_drawer.set_state("open")]]
+            title: "Screen 1"  # Set the title of the top app bar
+            left_action_items: [["menu", lambda x: app.root.ids.nav_drawer.set_state("open")]]  # Add menu button to open left navigation drawer
+            right_action_items: [["menu", lambda x: app.root.ids.settings_right_nav_drawer.set_state("open")]]  # Updated ID for the settings right navigation drawer
         MDLabel:
-            text: "Settings Screen 1"
-            halign: 'center'
+            text: "Settings Screen 1"  # Set the text of the label
+            halign: 'center'  # Set the horizontal alignment to center
         MDRaisedButton:
-            text: "Go to Screen 2"
-            pos_hint: {"center_x": .5}
-            on_release: root.manager.current = 'screen2'
+            text: "Go to Screen 2"  # Set the text of the button
+            pos_hint: {"center_x": .5}  # Center the button horizontally
+            on_release: root.manager.current = 'screen2'  # Switch to screen2 on button release

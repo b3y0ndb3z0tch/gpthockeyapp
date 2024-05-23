@@ -1,14 +1,12 @@
+# home/home.kv
+# This file defines the layout for the HomeScreen.
+
 <HomeScreen>:
-    name: 'home'
+    name: 'home'  # Set the name of the screen
     BoxLayout:
-        orientation: 'vertical'
-        MDTopAppBar:
-            title: "Home"
-            left_action_items: [["menu", lambda x: app.root.ids.nav_drawer.set_state("open")]]
+        orientation: 'vertical'  # Set the orientation to vertical
+        padding: dp(20)  # Set padding
+        spacing: dp(20)  # Set spacing
         MDLabel:
-            text: "Welcome to the Home Screen"
-            halign: 'center'
-        MDRaisedButton:
-            text: "Go to Profile"
-            pos_hint: {"center_x": .5}
-            on_release: app.root.ids.screen_manager.current = 'profile'
+            text: "Home Screen"  # Text for the home screen
+            halign: 'center'  # Center the label horizontally

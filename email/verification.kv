@@ -1,0 +1,34 @@
+<VerificationScreen>:
+    name: 'verification'  # Set the name of the screen
+    BoxLayout:
+        orientation: 'vertical'  # Set the orientation to vertical
+        padding: dp(20)  # Set padding
+        spacing: dp(20)  # Set spacing
+        MDLabel:
+            text: "Enter Verification Code"  # Prompt for verification code
+            halign: 'center'  # Center the label horizontally
+            font_style: 'H4'  # Set font style
+        Widget:
+            size_hint_y: None
+            height: dp(100)  # Add spacing between the label and the verification code field
+        MDTextField:
+            id: verification_code_field
+            hint_text: "Verification code"  # Hint text for the verification code field
+            helper_text: "Enter the code sent to your email"  # Helper text displayed when the field is focused
+            helper_text_mode: "on_focus"  # Show helper text only when the field is focused
+            pos_hint: {"center_x": 0.5}  # Center the verification code field horizontally
+            size_hint: (0.8, None)  # Set size hint
+            height: dp(40)  # Set height
+            on_text: root.verification_code = self.text  # Update the verification_code property with the text field input
+        Widget:
+            size_hint_y: None
+            height: dp(20)  # Add spacing between the verification code field and the submit button
+        MDRaisedButton:
+            text: "Submit"  # Text for the submit button
+            pos_hint: {"center_x": 0.5}  # Center the submit button horizontally
+            size_hint: (0.5, None)  # Set size hint
+            height: dp(40)  # Set height
+            on_release: root.submit_verification()  # Call submit_verification method on button release
+        Widget:
+            size_hint_y: None
+            height: dp(50)  # Add spacing below the submit button to keep it above the bottom

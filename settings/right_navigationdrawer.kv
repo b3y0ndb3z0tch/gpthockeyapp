@@ -1,4 +1,4 @@
-<ContentNavigationDrawer>:
+<SettingsRightNavigationDrawer>:
     orientation: 'vertical'  # Set the orientation to vertical
     padding: '8dp'  # Set the padding
     spacing: '8dp'  # Set the spacing
@@ -39,23 +39,16 @@
     ScrollView:
         MDList:
             OneLineIconListItem:
-                text: "Home"
+                text: "Screen 1"
                 theme_text_color: 'Custom'  # Use custom text color
                 text_color: 1, 1, 1, 1  # Set the text color to white
                 on_release:
                     root.nav_drawer.set_state("close")  # Close the drawer on release
-                    root.screen_manager.current = 'home'  # Switch to home screen
+                    root.screen_manager.current = 'screen1'  # Switch to screen1
             OneLineIconListItem:
-                text: "Settings"
+                text: "Screen 2"
                 theme_text_color: 'Custom'  # Use custom text color
                 text_color: 1, 1, 1, 1  # Set the text color to white
                 on_release:
                     root.nav_drawer.set_state("close")  # Close the drawer on release
-                    root.screen_manager.current = 'settings'  # Switch to settings screen
-            OneLineIconListItem:
-                text: "Profile"
-                theme_text_color: 'Custom'  # Use custom text color
-                text_color: 1, 1, 1, 1  # Set the text color to white
-                on_release:
-                    root.nav_drawer.set_state("close")  # Close the drawer on release
-                    root.screen_manager.current = 'profile'  # Switch to profile screen
+                    root.screen_manager.current = 'screen2'  # Switch to screen2
