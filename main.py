@@ -11,8 +11,11 @@ from settings.right_navigationdrawer import SettingsRightNavigationDrawer
 from home.home import HomeScreen
 from settings.settings import SettingsScreen, Screen1, Screen2
 from profile.profile import ProfileScreen
+from profile.stickhand import StickHandScreen  # Import the StickHandScreen
+from profile.forward import ForwardScreen  # Import the ForwardScreen
 from email.email import EmailScreen
 from email.verification import VerificationScreen
+from events.events import EventScreen  # Import the EventScreen
 
 class MainApp(MDApp):
     def build(self):
@@ -25,8 +28,11 @@ class MainApp(MDApp):
         Builder.load_file('settings/screen1.kv')
         Builder.load_file('settings/screen2.kv')
         Builder.load_file('profile/profile.kv')
+        Builder.load_file('profile/stickhand.kv')  # Load the stickhand.kv file
+        Builder.load_file('profile/forward.kv')  # Load the forward.kv file
         Builder.load_file('email/email.kv')
         Builder.load_file('email/verification.kv')
+        Builder.load_file('events/events.kv')  # Load the events.kv file
 
         root = Builder.load_file('main.kv')
         self.check_verification(root)
@@ -35,7 +41,7 @@ class MainApp(MDApp):
     def check_verification(self, root):
         """
         Check if the user is verified when the application starts.
-        If verified, navigate directly to the profile screen.
+        If verified, navigate directly to the stickhand screen.
         """
         data_directory = os.path.join(os.path.dirname(__file__), 'data')
         file_path = os.path.join(data_directory, 'user_data.json')
@@ -45,7 +51,7 @@ class MainApp(MDApp):
                 try:
                     user_data = json.load(f)
                     if user_data.get('verified'):
-                        root.ids.screen_manager.current = 'profile'
+                        root.ids.screen_manager.current = 'stickhand'
                 except json.JSONDecodeError:
                     pass
 

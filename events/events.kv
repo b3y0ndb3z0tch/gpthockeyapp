@@ -1,0 +1,48 @@
+#:import MDTopAppBar kivymd.uix.toolbar.MDTopAppBar
+#:import MDLabel kivymd.uix.label.MDLabel
+#:import MDRaisedButton kivymd.uix.button.MDRaisedButton
+#:import MDTextField kivymd.uix.textfield.MDTextField
+
+<EventScreen>:
+    name: 'events'
+
+    MDBoxLayout:
+        orientation: 'vertical'
+
+        MDTopAppBar:
+            title: 'Events'
+            left_action_items: [['menu', lambda x: nav_drawer.set_state("open")]]
+            elevation: 10
+
+        MDLabel:
+            text: 'Events Screen'
+            halign: 'center'
+
+        MDRaisedButton:
+            text: 'Create Event'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            on_release: root.open_create_event_dialog()
+
+<EventDialogContent>:
+    orientation: 'vertical'
+    padding: '20dp'
+
+    MDTextField:
+        id: event_name
+        hint_text: "Event Name"
+        required: True
+
+    MDTextField:
+        id: event_date
+        hint_text: "Event Date (YYYY-MM-DD)"
+        required: True
+
+    MDTextField:
+        id: event_start_time
+        hint_text: "Start Time (HH:MM)"
+        required: True
+
+    MDTextField:
+        id: event_end_time
+        hint_text: "End Time (HH:MM)"
+        required: True

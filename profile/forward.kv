@@ -1,0 +1,67 @@
+<ForwardScreen>:
+    name: 'forward'
+    BoxLayout:
+        orientation: 'vertical'
+
+        MDTopAppBar:
+            title: 'Profile'
+            left_action_items: [['menu', lambda x: app.root.toggle_nav_drawer()]]
+
+        BoxLayout:
+            orientation: 'vertical'
+            padding: dp(20)
+            spacing: dp(20)
+
+            Widget:  # Spacer to push the content down
+                size_hint_y: 1
+
+            MDBoxLayout:
+                orientation: 'vertical'
+                size_hint_y: None
+                height: self.minimum_height
+                padding: dp(20)  # Increased padding to make white space larger
+                spacing: dp(10)
+                canvas.before:
+                    Color:
+                        rgba: 0.2, 0.6, 0.8, 1  # Background color for the heading
+                    Line:
+                        width: 2
+                        rectangle: (self.x, self.y, self.width, self.height)
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [20,]  # Increased radius to enhance sign appearance
+
+                MDLabel:
+                    text: 'Do you play Forward?'
+                    halign: 'center'
+                    font_style: 'H4'
+                    size_hint_y: None
+                    height: self.texture_size[1] + dp(20)
+
+                MDLabel:
+                    text: 'Multiple Positions Allowed'
+                    halign: 'center'
+                    font_style: 'Caption'
+                    size_hint_y: None
+                    height: self.texture_size[1] + dp(10)
+
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint_y: None
+                height: dp(60)  # Increase height for larger buttons
+                spacing: dp(20)
+                padding: [dp(40), 0]
+
+                MDRaisedButton:
+                    text: 'YES'
+                    size_hint_x: 0.5
+                    on_release: root.save_forward('Yes')
+
+                MDRaisedButton:
+                    text: 'NO'
+                    size_hint_x: 0.5
+                    on_release: root.save_forward('No')
+
+            Widget:  # Spacer to keep content in the middle
+                size_hint_y: 1

@@ -1,0 +1,13 @@
+{
+    "user_name": "",
+    "left_wing": false,
+    "center": true,
+    "right_wing": false,
+    "left_defense": true,
+    "right_defense": false,
+    "goalie": false,
+    "stick_hand": "Right",
+    "forward_position": "Center",
+    "right_handed": true,
+    "forward": true
+}

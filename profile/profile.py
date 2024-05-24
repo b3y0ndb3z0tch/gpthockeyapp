@@ -1,68 +1,109 @@
-# profile/profile.py
-
-from kivymd.uix.screen import MDScreen
-from kivy.properties import ObjectProperty
-import json
 import os
+import json
+from kivy.lang import Builder
+from kivy.uix.screenmanager import Screen
+from kivymd.uix.button import MDRaisedButton
+from kivymd.uix.label import MDLabel
+from kivymd.uix.selectioncontrol import MDCheckbox
+from kivymd.uix.boxlayout import MDBoxLayout
+from kivy.properties import StringProperty, BooleanProperty
+
+# Define the path for the .kv file
+kv_file_path = os.path.join(os.path.dirname(__file__), 'profile.kv')
+Builder.load_file(kv_file_path)
+
+# Load user profile data
+data_folder = os.path.join(os.path.dirname(__file__), '../data')
+user_profile_file = os.path.join(data_folder, 'user_profile.json')
 
 
-class ProfileScreen(MDScreen):
-    forward_left_wing_chk = ObjectProperty(None)
-    forward_center_chk = ObjectProperty(None)
-    forward_right_wing_chk = ObjectProperty(None)
-    defense_left_chk = ObjectProperty(None)
-    defense_right_chk = ObjectProperty(None)
-    goalie_chk = ObjectProperty(None)
+def load_user_profile():
+    if os.path.exists(user_profile_file):
+        with open(user_profile_file, 'r') as file:
+            return json.load(file)
+    return {}
 
-    def on_pre_enter(self, *args):
-        self.load_profile()
 
-    def update_forward(self, checkbox, position):
-        if checkbox.active:
-            self.ids.forward_left_wing_chk.active = position == 'left_wing'
-            self.ids.forward_center_chk.active = position == 'center'
-            self.ids.forward_right_wing_chk.active = position == 'right_wing'
+class ProfileScreen(Screen):
+    user_name = StringProperty("")
+    left_wing_checked = BooleanProperty(False)
+    center_checked = BooleanProperty(False)
+    right_wing_checked = BooleanProperty(False)
+    left_defense_checked = BooleanProperty(False)
+    right_defense_checked = BooleanProperty(False)
+    shoot_left_checked = BooleanProperty(False)
+    shoot_right_checked = BooleanProperty(False)
+    goalie_checked = BooleanProperty(False)
 
-    def update_defense(self, checkbox, position):
-        if checkbox.active:
-            self.ids.defense_left_chk.active = position == 'left'
-            self.ids.defense_right_chk.active = position == 'right'
+    def on_pre_enter(self):
+        user_profile = load_user_profile()
+        self.user_name = user_profile.get('user_name', "")
+        self.left_wing_checked = user_profile.get('left_wing', False)
+        self.center_checked = user_profile.get('center', False)
+        self.right_wing_checked = user_profile.get('right_wing', False)
+        self.left_defense_checked = user_profile.get('left_defense', False)
+        self.right_defense_checked = user_profile.get('right_defense', False)
+        self.shoot_left_checked = user_profile.get('shoot_left', False)
+        self.shoot_right_checked = user_profile.get('shoot_right', False)
+        self.goalie_checked = user_profile.get('goalie', False)
+        self.update_checkboxes()
 
-    def update_goalie(self, checkbox, position):
-        if checkbox.active:
-            self.ids.goalie_chk.active = position == 'goalie'
+    def update_checkboxes(self):
+        """
+        Update the checkboxes based on the loaded profile data.
+        """
+        self.ids.left_wing_checkbox.active = self.left_wing_checked
+        self.ids.center_checkbox.active = self.center_checked
+        self.ids.right_wing_checkbox.active = self.right_wing_checked
+        self.ids.left_defense_checkbox.active = self.left_defense_checked
+        self.ids.right_defense_checkbox.active = self.right_defense_checked
+        self.ids.left_hand_checkbox.active = self.shoot_left_checked
+        self.ids.right_hand_checkbox.active = self.shoot_right_checked
+        self.ids.goalie_checkbox.active = self.goalie_checked
 
-    def save_profile(self):
+    def save_user_profile(self):
+        """
+        Save the user profile information to a JSON file and print status to console.
+        """
         profile_data = {
-            "forward": {
-                "left_wing": self.ids.forward_left_wing_chk.active,
-                "center": self.ids.forward_center_chk.active,
-                "right_wing": self.ids.forward_right_wing_chk.active,
-            },
-            "defense": {
-                "left": self.ids.defense_left_chk.active,
-                "right": self.ids.defense_right_chk.active,
-            },
-            "goalie": self.ids.goalie_chk.active,
+            'user_name': self.user_name,
+            'left_wing': self.ids.left_wing_checkbox.active,
+            'center': self.ids.center_checkbox.active,
+            'right_wing': self.ids.right_wing_checkbox.active,
+            'left_defense': self.ids.left_defense_checkbox.active,
+            'right_defense': self.ids.right_defense_checkbox.active,
+            'shoot_left': self.ids.left_hand_checkbox.active,
+            'shoot_right': self.ids.right_hand_checkbox.active,
+            'goalie': self.ids.goalie_checkbox.active
         }
 
+        self.print_profile_data(profile_data)
+        self.save_profile_data(profile_data)
+
+    def print_profile_data(self, profile_data):
+        """
+        Print the profile data to the console.
+        """
+        print(f"Profile Data: {profile_data}")
+
+    def save_profile_data(self, profile_data):
+        """
+        Save the profile data to a JSON file.
+        """
         data_directory = os.path.join(os.path.dirname(__file__), '../data')
-        os.makedirs(data_directory, exist_ok=True)
         file_path = os.path.join(data_directory, 'user_profile.json')
+
+        if not os.path.exists(data_directory):
+            os.makedirs(data_directory)
 
         with open(file_path, 'w') as f:
-            json.dump(profile_data, f)
+            json.dump(profile_data, f, indent=4)
 
-    def load_profile(self):
-        data_directory = os.path.join(os.path.dirname(__file__), '../data')
-        file_path = os.path.join(data_directory, 'user_profile.json')
+        print(f"Profile saved to {file_path}")
 
-        if os.path.exists(file_path):
-            with open(file_path, 'r') as f:
-                profile_data = json.load(f)
-                self.ids.forward_left_wing_chk.active = profile_data['forward'].get('left_wing', False)
-                self.ids.forward_center_chk.active = profile_data['forward'].get('center', False)
-                self.ids.forward_right_wing_chk.active = profile_data['forward'].get('right_wing', False)
-                self.ids.defense_left_chk.active = profile_data['defense'].get('left', False)
-                self.ids.defense_right_chk.active = profile_data['defense'].get('right', False)
-                self.ids.goalie_chk.active = profile_data.get('goalie', False)
+    def go_to_next_screen(self):
+        """
+        Save the profile and navigate to the next screen.
+        """
+        self.save_user_profile()
+        self.manager.current = 'profile2'

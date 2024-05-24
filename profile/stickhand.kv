@@ -1,0 +1,60 @@
+<StickHandScreen>:
+    name: 'stickhand'
+    BoxLayout:
+        orientation: 'vertical'
+
+        MDTopAppBar:
+            title: 'Profile'
+            left_action_items: [['menu', lambda x: app.root.toggle_nav_drawer()]]
+
+        BoxLayout:
+            orientation: 'vertical'
+            padding: dp(20)
+            spacing: dp(20)
+
+            Widget:  # Spacer to push the content down
+                size_hint_y: 1
+
+            MDBoxLayout:
+                orientation: 'vertical'
+                size_hint_y: None
+                height: self.minimum_height
+                padding: dp(20)  # Increased padding to make white space larger
+                spacing: dp(10)
+                canvas.before:
+                    Color:
+                        rgba: 0.2, 0.6, 0.8, 1  # Background color for the heading
+                    Line:
+                        width: 2
+                        rectangle: (self.x, self.y, self.width, self.height)
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [20,]  # Increased radius to enhance sign appearance
+
+                MDLabel:
+                    text: 'STICK HAND'
+                    halign: 'center'
+                    font_style: 'H4'
+                    size_hint_y: None
+                    height: self.texture_size[1] + dp(20)
+
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint_y: None
+                height: dp(60)  # Increase height for larger buttons
+                spacing: dp(20)
+                padding: [dp(40), 0]
+
+                MDRaisedButton:
+                    text: 'LEFT HAND'
+                    size_hint_x: 0.5
+                    on_release: root.save_stick_hand('Left')
+
+                MDRaisedButton:
+                    text: 'RIGHT HAND'
+                    size_hint_x: 0.5
+                    on_release: root.save_stick_hand('Right')
+
+            Widget:  # Spacer to keep content in the middle
+                size_hint_y: 1

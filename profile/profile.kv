@@ -2,148 +2,275 @@
     name: 'profile'
     BoxLayout:
         orientation: 'vertical'
-        padding: dp(20)
-        spacing: dp(10)
 
-        MDLabel:
-            text: "PROFILE"
-            font_style: "H5"
-            halign: "center"
-            size_hint_y: None
-            height: self.texture_size[1]
+        MDTopAppBar:
+            title: 'Profile'
+            left_action_items: [['menu', lambda x: app.root.toggle_nav_drawer()]]
 
-        MDCard:
+        BoxLayout:
             orientation: 'vertical'
-            padding: dp(20)
-            spacing: dp(10)
-            size_hint: None, None
-            size: dp(300), dp(400)
-            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            size_hint_y: 1
 
-            MDLabel:
-                text: "Position"
-                font_style: "H6"
-                halign: "center"
+            ScrollView:
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    size_hint_y: None
+                    height: self.minimum_height
+                    padding: dp(20)
+                    spacing: dp(10)
+
+                    MDBoxLayout:
+                        orientation: 'horizontal'
+                        size_hint_y: None
+                        height: self.minimum_height
+                        padding: dp(10)
+                        spacing: dp(10)
+                        canvas.before:
+                            Color:
+                                rgba: 0.2, 0.6, 0.8, 1  # Background color for the label
+                            RoundedRectangle:
+                                pos: self.pos
+                                size: self.size
+                                radius: [10,]
+
+                        MDLabel:
+                            text: "Forward"
+                            theme_text_color: "Primary"
+                            halign: "center"
+                            font_style: "H6"
+                            padding: dp(10)
+
+                    MDBoxLayout:
+                        orientation: 'horizontal'
+                        size_hint_y: None
+                        height: self.minimum_height
+                        padding: dp(10)
+                        spacing: dp(10)
+
+                        MDCheckbox:
+                            id: left_wing_checkbox
+                            group: 'forward'
+                            size_hint: None, None
+                            size: dp(48), dp(48)
+                            pos_hint: {'center_x': .5, 'center_y': .5}
+                            on_active: root.save_user_profile()
+                        MDLabel:
+                            text: 'Left Wing'
+                            valign: 'middle'
+                            size_hint_y: None
+                            height: self.texture_size[1]
+
+                    MDBoxLayout:
+                        orientation: 'horizontal'
+                        size_hint_y: None
+                        height: self.minimum_height
+                        padding: dp(10)
+                        spacing: dp(10)
+
+                        MDCheckbox:
+                            id: right_wing_checkbox
+                            group: 'forward'
+                            size_hint: None, None
+                            size: dp(48), dp(48)
+                            pos_hint: {'center_x': .5, 'center_y': .5}
+                            on_active: root.save_user_profile()
+                        MDLabel:
+                            text: 'Right Wing'
+                            valign: 'middle'
+                            size_hint_y: None
+                            height: self.texture_size[1]
+
+                    MDBoxLayout:
+                        orientation: 'horizontal'
+                        size_hint_y: None
+                        height: self.minimum_height
+                        padding: dp(10)
+                        spacing: dp(10)
+
+                        MDCheckbox:
+                            id: center_checkbox
+                            group: 'forward'
+                            size_hint: None, None
+                            size: dp(48), dp(48)
+                            pos_hint: {'center_x': .5, 'center_y': .5}
+                            on_active: root.save_user_profile()
+                        MDLabel:
+                            text: 'Center'
+                            valign: 'middle'
+                            size_hint_y: None
+                            height: self.texture_size[1]
+
+                    MDBoxLayout:
+                        orientation: 'horizontal'
+                        size_hint_y: None
+                        height: self.minimum_height
+                        padding: dp(10)
+                        spacing: dp(10)
+                        canvas.before:
+                            Color:
+                                rgba: 0.2, 0.6, 0.8, 1  # Background color for the label
+                            RoundedRectangle:
+                                pos: self.pos
+                                size: self.size
+                                radius: [10,]
+
+                        MDLabel:
+                            text: "Defense"
+                            theme_text_color: "Primary"
+                            halign: "center"
+                            font_style: "H6"
+                            padding: dp(10)
+
+                    MDBoxLayout:
+                        orientation: 'horizontal'
+                        size_hint_y: None
+                        height: self.minimum_height
+                        padding: dp(10)
+                        spacing: dp(10)
+
+                        MDCheckbox:
+                            id: left_defense_checkbox
+                            group: 'defense'
+                            size_hint: None, None
+                            size: dp(48), dp(48)
+                            pos_hint: {'center_x': .5, 'center_y': .5}
+                            on_active: root.save_user_profile()
+                        MDLabel:
+                            text: 'Left Defense'
+                            valign: 'middle'
+                            size_hint_y: None
+                            height: self.texture_size[1]
+
+                    MDBoxLayout:
+                        orientation: 'horizontal'
+                        size_hint_y: None
+                        height: self.minimum_height
+                        padding: dp(10)
+                        spacing: dp(10)
+
+                        MDCheckbox:
+                            id: right_defense_checkbox
+                            group: 'defense'
+                            size_hint: None, None
+                            size: dp(48), dp(48)
+                            pos_hint: {'center_x': .5, 'center_y': .5}
+                            on_active: root.save_user_profile()
+                        MDLabel:
+                            text: 'Right Defense'
+                            valign: 'middle'
+                            size_hint_y: None
+                            height: self.texture_size[1]
+
+                    MDBoxLayout:
+                        orientation: 'horizontal'
+                        size_hint_y: None
+                        height: self.minimum_height
+                        padding: dp(10)
+                        spacing: dp(10)
+                        canvas.before:
+                            Color:
+                                rgba: 0.2, 0.6, 0.8, 1  # Background color for the label
+                            RoundedRectangle:
+                                pos: self.pos
+                                size: self.size
+                                radius: [10,]
+
+                        MDLabel:
+                            text: "Goalie"
+                            theme_text_color: "Primary"
+                            halign: "center"
+                            font_style: "H6"
+                            padding: dp(10)
+
+                    MDBoxLayout:
+                        orientation: 'horizontal'
+                        size_hint_y: None
+                        height: self.minimum_height
+                        padding: dp(10)
+                        spacing: dp(10)
+
+                        MDCheckbox:
+                            id: goalie_checkbox
+                            group: 'goalie'
+                            size_hint: None, None
+                            size: dp(48), dp(48)
+                            pos_hint: {'center_x': .5, 'center_y': .5}
+                            on_active: root.save_user_profile()
+                        MDLabel:
+                            text: 'Goalie'
+                            valign: 'middle'
+                            size_hint_y: None
+                            height: self.texture_size[1]
+
+                    MDBoxLayout:
+                        orientation: 'horizontal'
+                        size_hint_y: None
+                        height: self.minimum_height
+                        padding: dp(10)
+                        spacing: dp(10)
+                        canvas.before:
+                            Color:
+                                rgba: 0.2, 0.6, 0.8, 1  # Background color for the label
+                            RoundedRectangle:
+                                pos: self.pos
+                                size: self.size
+                                radius: [10,]
+
+                        MDLabel:
+                            text: "Shooting Hand"
+                            theme_text_color: "Primary"
+                            halign: "center"
+                            font_style: "H6"
+                            padding: dp(10)
+
+                    MDBoxLayout:
+                        orientation: 'horizontal'
+                        size_hint_y: None
+                        height: self.minimum_height
+                        padding: dp(10)
+                        spacing: dp(10)
+
+                        MDCheckbox:
+                            id: left_hand_checkbox
+                            group: 'shooting_hand'
+                            size_hint: None, None
+                            size: dp(48), dp(48)
+                            pos_hint: {'center_x': .5, 'center_y': .5}
+                            on_active: root.save_user_profile()
+                        MDLabel:
+                            text: 'Left Hand'
+                            valign: 'middle'
+                            size_hint_y: None
+                            height: self.texture_size[1]
+
+                    MDBoxLayout:
+                        orientation: 'horizontal'
+                        size_hint_y: None
+                        height: self.minimum_height
+                        padding: dp(10)
+                        spacing: dp(10)
+
+                        MDCheckbox:
+                            id: right_hand_checkbox
+                            group: 'shooting_hand'
+                            size_hint: None, None
+                            size: dp(48), dp(48)
+                            pos_hint: {'center_x': .5, 'center_y': .5}
+                            on_active: root.save_user_profile()
+                        MDLabel:
+                            text: 'Right Hand'
+                            valign: 'middle'
+                            size_hint_y: None
+                            height: self.texture_size[1]
+
+            Widget:
                 size_hint_y: None
-                height: self.texture_size[1]
+                height: dp(10)
 
-            BoxLayout:
-                orientation: 'vertical'
-                spacing: dp(20)  # Increased spacing
-
-                BoxLayout:
-                    orientation: 'horizontal'
-                    spacing: dp(10)
-
-                    MDLabel:
-                        text: "Forward"
-                        font_style: "H6"
-                        halign: "left"
-                        size_hint_y: None
-                        height: self.texture_size[1]
-
-                BoxLayout:
-                    orientation: 'horizontal'
-                    spacing: dp(10)
-
-                    MDCheckbox:
-                        id: forward_left_wing_chk
-                        group: 'forward'
-                        on_active: root.update_forward(self, 'left_wing')
-
-                    MDLabel:
-                        text: "Left Wing"
-                        halign: "left"
-                        size_hint_y: None
-                        height: self.texture_size[1]
-
-                BoxLayout:
-                    orientation: 'horizontal'
-                    spacing: dp(10)
-
-                    MDCheckbox:
-                        id: forward_center_chk
-                        group: 'forward'
-                        on_active: root.update_forward(self, 'center')
-
-                    MDLabel:
-                        text: "Center"
-                        halign: "left"
-                        size_hint_y: None
-                        height: self.texture_size[1]
-
-                BoxLayout:
-                    orientation: 'horizontal'
-                    spacing: dp(10)
-
-                    MDCheckbox:
-                        id: forward_right_wing_chk
-                        group: 'forward'
-                        on_active: root.update_forward(self, 'right_wing')
-
-                    MDLabel:
-                        text: "Right Wing"
-                        halign: "left"
-                        size_hint_y: None
-                        height: self.texture_size[1]
-
-                BoxLayout:
-                    orientation: 'horizontal'
-                    spacing: dp(10)
-
-                    MDLabel:
-                        text: "Defense"
-                        font_style: "H6"
-                        halign: "left"
-                        size_hint_y: None
-                        height: self.texture_size[1]
-
-                BoxLayout:
-                    orientation: 'horizontal'
-                    spacing: dp(10)
-
-                    MDCheckbox:
-                        id: defense_left_chk
-                        group: 'defense'
-                        on_active: root.update_defense(self, 'left')
-
-                    MDLabel:
-                        text: "Left Defense"
-                        halign: "left"
-                        size_hint_y: None
-                        height: self.texture_size[1]
-
-                BoxLayout:
-                    orientation: 'horizontal'
-                    spacing: dp(10)
-
-                    MDCheckbox:
-                        id: defense_right_chk
-                        group: 'defense'
-                        on_active: root.update_defense(self, 'right')
-
-                    MDLabel:
-                        text: "Right Defense"
-                        halign: "left"
-                        size_hint_y: None
-                        height: self.texture_size[1]
-
-                BoxLayout:
-                    orientation: 'horizontal'
-                    spacing: dp(10)
-
-                    MDLabel:
-                        text: "Goalie"
-                        font_style: "H6"
-                        halign: "left"
-                        size_hint_y: None
-                        height: self.texture_size[1]
-
-                    MDCheckbox:
-                        id: goalie_chk
-                        on_active: root.update_goalie(self, 'goalie')
-
-        MDRaisedButton:
-            text: "Save Profile"
-            pos_hint: {'center_x': 0.5}
-            on_release: root.save_profile()
+            MDRaisedButton:
+                text: 'NEXT'
+                size_hint_x: 1
+                size_hint_y: None
+                height: dp(56)
+                pos_hint: {'x': 0, 'y': 0}
+                on_release: root.go_to_next_screen()
