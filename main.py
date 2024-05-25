@@ -20,6 +20,8 @@ from email.email import EmailScreen
 from email.verification import VerificationScreen
 from events.events import EventScreen  # Import the EventScreen
 from profile.highest_level import HighestLevelScreen  # Import the HighestLevelScreen
+from profile.current_level import CurrentLevelScreen  # Import the CurrentLevelScreen
+
 class MainApp(MDApp):
     def build(self):
         Window.size = (350, 600)
@@ -39,7 +41,8 @@ class MainApp(MDApp):
         Builder.load_file('profile/defense.kv')
         Builder.load_file('profile/goalie.kv')
         Builder.load_file('profile/competitive.kv')
-        Builder.load_file('profile/highest_level.kv')  # Load the highest_level.kv file
+        Builder.load_file('profile/highest_level.kv')
+        Builder.load_file('profile/current_level.kv')  # Load the current_level.kv file
 
         root = Builder.load_file('main.kv')
         self.check_verification(root)

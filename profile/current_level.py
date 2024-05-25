@@ -7,7 +7,7 @@ from kivymd.uix.menu import MDDropdownMenu
 from kivymd.uix.textfield import MDTextField
 
 # Define the path for the .kv file
-kv_file_path = os.path.join(os.path.dirname(__file__), 'highest_level.kv')
+kv_file_path = os.path.join(os.path.dirname(__file__), 'current_level.kv')
 Builder.load_file(kv_file_path)
 
 # Load user profile data and colors
@@ -30,7 +30,7 @@ def load_colors():
     return {}
 
 
-class HighestLevelScreen(Screen):
+class CurrentLevelScreen(Screen):
     user_name = StringProperty("")
     background_primary = ListProperty([0.2, 0.6, 0.8, 1])
     label_fontprimary = ListProperty([1, 1, 1, 1])
@@ -102,12 +102,12 @@ class HighestLevelScreen(Screen):
         self.tier_menu.dismiss()
         self.level_menu.dismiss()
 
-    def save_highest_level(self, tier, level):
+    def save_current_level(self, tier, level):
         """
-        Save the user's highest level to the profile.
+        Save the user's current level to the profile.
         """
         user_profile = load_user_profile()
-        user_profile['highest_level'] = {'tier': tier, 'level': level}
+        user_profile['current_level'] = {'tier': tier, 'level': level}
 
         data_directory = os.path.join(os.path.dirname(__file__), '../data')
         file_path = os.path.join(data_directory, 'user_profile.json')
@@ -115,6 +115,6 @@ class HighestLevelScreen(Screen):
         with open(file_path, 'w') as f:
             json.dump(user_profile, f, indent=4)
 
-        print(f"Highest Level Played - Tier: {tier}, Level: {level}")
+        print(f"Current Level Playing - Tier: {tier}, Level: {level}")
         # Navigate to the next screen, e.g., 'next_screen'
-        self.manager.current = 'current_level'
+        #self.manager.current = 'next_screen'

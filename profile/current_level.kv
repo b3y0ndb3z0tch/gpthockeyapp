@@ -1,5 +1,5 @@
-<HighestLevelScreen>:
-    name: 'highest_level'
+<CurrentLevelScreen>:
+    name: 'current_level'
     BoxLayout:
         orientation: 'vertical'
 
@@ -34,7 +34,7 @@
                         radius: [20,]
 
                 MDLabel:
-                    text: 'Highest Level Played'
+                    text: 'Current Level Playing'
                     halign: 'center'
                     font_style: 'H5'
                     size_hint_y: None
@@ -88,7 +88,7 @@
                 size_hint_x: 0.5
                 pos_hint: {"center_x": 0.5}  # Center the button horizontally
                 on_release:
-                    root.save_highest_level(tier_dropdown.text, level_dropdown.text)
+                    root.save_current_level(tier_dropdown.text, level_dropdown.text)
                 text_color: root.button_fontprimary  # Dynamic font color for button
                 on_press: self.md_bg_color = root.button_pressed  # Change background color on press
 
