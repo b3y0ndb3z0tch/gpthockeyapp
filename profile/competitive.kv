@@ -11,6 +11,8 @@
             orientation: 'vertical'
             padding: dp(20)
             spacing: dp(20)
+            size_hint_y: None
+            height: self.minimum_height
 
             Widget:  # Spacer to push the content down
                 size_hint_y: 1
@@ -19,8 +21,8 @@
                 orientation: 'vertical'
                 size_hint_y: None
                 height: self.minimum_height
-                padding: dp(20)  # Increased padding to make white space larger
-                spacing: dp(10)
+                padding: dp(10)  # Reduced padding to save space
+                spacing: dp(5)  # Reduced spacing to save space
                 canvas.before:
                     Color:
                         rgba: root.background_primary  # Dynamic background color
@@ -33,11 +35,20 @@
                         radius: [20,]  # Increased radius to enhance sign appearance
 
                 MDLabel:
+                    text: 'I play to be...'
+                    halign: 'center'
+                    font_style: 'H5'  # Font size for the label
+                    size_hint_y: None
+                    height: self.texture_size[1] + dp(10)
+                    theme_text_color: 'Custom'
+                    text_color: root.label_fontprimary  # Dynamic font color for label
+
+                MDLabel:
                     text: 'Social'
                     halign: 'center'
-                    font_style: 'H4'
+                    font_style: 'H5'  # Reduced font size
                     size_hint_y: None
-                    height: self.texture_size[1] + dp(20)
+                    height: self.texture_size[1] + dp(10)
                     theme_text_color: 'Custom'
                     text_color: root.label_fontprimary  # Dynamic font color for label
 
@@ -45,18 +56,42 @@
                     id: social_slider
                     min: 0
                     max: 10
+                    step: 0.5  # Increment by 0.5
                     value: 5
+                    size_hint_y: None
+                    height: dp(40)  # Reduced height to save space
+                    thumb_radius: dp(15)  # Reduced thumb size to save space
+                    hint: True
+                    hint_bg_color: root.slider_value_bg
+                    hint_text_color: root.slider_value_text
+                    hint_radius: [5, 5, 5, 5]
                     color: root.slider_active
-                    hint: False
-                    active_color: root.slider_active
                     inactive_color: root.slider_inactive
+                    thumb_color_active: root.slider_thumb  # Active dot color
+                    thumb_color_inactive: root.slider_thumb_inactive
+
+                MDLabel:
+                    text: str(int(social_slider.value * 2) / 2)  # Display slider value
+                    halign: 'center'
+                    font_style: 'H6'  # Reduced font size
+                    size_hint_y: None
+                    height: self.texture_size[1] + dp(5)
+                    canvas.before:
+                        Color:
+                            rgba: root.slider_value_bg  # Background color
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [10,]
+                    theme_text_color: 'Custom'
+                    text_color: root.slider_value_text  # Text color
 
                 MDLabel:
                     text: 'Competitive'
                     halign: 'center'
-                    font_style: 'H4'
+                    font_style: 'H5'  # Reduced font size
                     size_hint_y: None
-                    height: self.texture_size[1] + dp(20)
+                    height: self.texture_size[1] + dp(10)
                     theme_text_color: 'Custom'
                     text_color: root.label_fontprimary  # Dynamic font color for label
 
@@ -64,18 +99,42 @@
                     id: competitive_slider
                     min: 0
                     max: 10
+                    step: 0.5  # Increment by 0.5
                     value: 5
+                    size_hint_y: None
+                    height: dp(40)  # Reduced height to save space
+                    thumb_radius: dp(15)  # Reduced thumb size to save space
+                    hint: True
+                    hint_bg_color: root.slider_value_bg
+                    hint_text_color: root.slider_value_text
+                    hint_radius: [5, 5, 5, 5]
                     color: root.slider_active
-                    hint: False
-                    active_color: root.slider_active
                     inactive_color: root.slider_inactive
+                    thumb_color_active: root.slider_thumb  # Active dot color
+                    thumb_color_inactive: root.slider_thumb_inactive
 
                 MDLabel:
-                    text: 'Skill'
+                    text: str(int(competitive_slider.value * 2) / 2)  # Display slider value
                     halign: 'center'
-                    font_style: 'H4'
+                    font_style: 'H6'  # Reduced font size
                     size_hint_y: None
-                    height: self.texture_size[1] + dp(20)
+                    height: self.texture_size[1] + dp(5)
+                    canvas.before:
+                        Color:
+                            rgba: root.slider_value_bg  # Background color
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [10,]
+                    theme_text_color: 'Custom'
+                    text_color: root.slider_value_text  # Text color
+
+                MDLabel:
+                    text: 'Skillful'
+                    halign: 'center'
+                    font_style: 'H5'  # Reduced font size
+                    size_hint_y: None
+                    height: self.texture_size[1] + dp(10)
                     theme_text_color: 'Custom'
                     text_color: root.label_fontprimary  # Dynamic font color for label
 
@@ -83,16 +142,45 @@
                     id: skill_slider
                     min: 0
                     max: 10
+                    step: 0.5  # Increment by 0.5
                     value: 5
+                    size_hint_y: None
+                    height: dp(40)  # Reduced height to save space
+                    thumb_radius: dp(15)  # Reduced thumb size to save space
+                    hint: True
+                    hint_bg_color: root.slider_value_bg
+                    hint_text_color: root.slider_value_text
+                    hint_radius: [5, 5, 5, 5]
                     color: root.slider_active
-                    hint: False
-                    active_color: root.slider_active
                     inactive_color: root.slider_inactive
+                    thumb_color_active: root.slider_thumb  # Active dot color
+                    thumb_color_inactive: root.slider_thumb_inactive
+
+                MDLabel:
+                    text: str(int(skill_slider.value * 2) / 2)  # Display slider value
+                    halign: 'center'
+                    font_style: 'H6'  # Reduced font size
+                    size_hint_y: None
+                    height: self.texture_size[1] + dp(5)
+                    canvas.before:
+                        Color:
+                            rgba: root.slider_value_bg  # Background color
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [10,]
+                    theme_text_color: 'Custom'
+                    text_color: root.slider_value_text  # Text color
+
+            Widget:  # Spacer to push the content down
+                size_hint_y: 1
 
             MDRaisedButton:
                 text: 'NEXT'
                 size_hint_y: None
                 height: dp(48)
+                size_hint_x: 0.5
+                pos_hint: {"center_x": 0.5}  # Center the button horizontally
                 on_release:
                     root.save_competitive(
                     social_slider.value,

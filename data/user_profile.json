@@ -9,8 +9,8 @@
     "stick_hand": "Right",
     "forward_position": "Center",
     "right_handed": true,
-    "forward": true,
-    "defense": true,
+    "forward": false,
+    "defense": false,
     "social": 5,
     "competitive": 5,
     "skill": 5

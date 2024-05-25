@@ -1,0 +1,88 @@
+<HighestLevelScreen>:
+    name: 'highest_level'
+    BoxLayout:
+        orientation: 'vertical'
+
+        MDTopAppBar:
+            title: 'Profile'
+            left_action_items: [['menu', lambda x: app.root.toggle_nav_drawer()]]
+
+        BoxLayout:
+            orientation: 'vertical'
+            padding: dp(20)
+            spacing: dp(20)
+            size_hint_y: None
+            height: self.minimum_height
+
+            Widget:  # Spacer to push the content down
+                size_hint_y: 1
+
+            MDBoxLayout:
+                orientation: 'vertical'
+                size_hint_y: None
+                height: self.minimum_height
+                padding: dp(10)  # Reduced padding to save space
+                spacing: dp(5)  # Reduced spacing to save space
+                canvas.before:
+                    Color:
+                        rgba: root.background_primary  # Dynamic background color
+                    Line:
+                        width: 2
+                        rectangle: (self.x, self.y, self.width, self.height)
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [20,]  # Increased radius to enhance sign appearance
+
+                MDLabel:
+                    text: 'Highest Level Played'
+                    halign: 'center'
+                    font_style: 'H5'  # Font size for the label
+                    size_hint_y: None
+                    height: self.texture_size[1] + dp(10)
+                    theme_text_color: 'Custom'
+                    text_color: root.label_fontprimary  # Dynamic font color for label
+
+                MDLabel:
+                    text: 'Tier'
+                    halign: 'center'
+                    font_style: 'H5'
+                    size_hint_y: None
+                    height: self.texture_size[1] + dp(10)
+                    theme_text_color: 'Custom'
+                    text_color: root.label_fontprimary  # Dynamic font color for label
+
+                MDDropDownItem:
+                    id: tier_dropdown
+                    hint_text: "Select Tier"
+                    size_hint_y: None
+                    height: dp(40)
+
+                MDLabel:
+                    text: 'Level'
+                    halign: 'center'
+                    font_style: 'H5'
+                    size_hint_y: None
+                    height: self.texture_size[1] + dp(10)
+                    theme_text_color: 'Custom'
+                    text_color: root.label_fontprimary  # Dynamic font color for label
+
+                MDDropDownItem:
+                    id: level_dropdown
+                    hint_text: "Select Level"
+                    size_hint_y: None
+                    height: dp(40)
+
+            MDRaisedButton:
+                text: 'NEXT'
+                size_hint_y: None
+                height: dp(48)
+                size_hint_x: 0.5
+                pos_hint: {"center_x": 0.5}  # Center the button horizontally
+                on_release:
+                    root.save_highest_level(tier_dropdown.current_item, level_dropdown.current_item)
+                text_color: root.button_fontprimary  # Dynamic font color for button
+                on_press: self.md_bg_color = root.button_pressed  # Change background color on press
+
+            Widget:  # Spacer to keep content in the middle
+                size_hint_y: 1

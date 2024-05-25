@@ -19,7 +19,7 @@ from profile.competitive import CompetitiveScreen  # Import the CompetitiveScree
 from email.email import EmailScreen
 from email.verification import VerificationScreen
 from events.events import EventScreen  # Import the EventScreen
-
+from profile.highest_level import HighestLevelScreen  # Import the HighestLevelScreen
 class MainApp(MDApp):
     def build(self):
         Window.size = (350, 600)
@@ -31,14 +31,15 @@ class MainApp(MDApp):
         Builder.load_file('settings/screen1.kv')
         Builder.load_file('settings/screen2.kv')
         Builder.load_file('profile/profile.kv')
-        Builder.load_file('profile/stickhand.kv')  # Load the stickhand.kv file
-        Builder.load_file('profile/forward.kv')  # Load the forward.kv file
-        Builder.load_file('profile/defense.kv')  # Load the defense.kv file
-        Builder.load_file('profile/goalie.kv')  # Load the goalie.kv file
-        Builder.load_file('profile/competitive.kv')  # Load the competitive.kv file
         Builder.load_file('email/email.kv')
         Builder.load_file('email/verification.kv')
-        Builder.load_file('events/events.kv')  # Load the events.kv file
+        Builder.load_file('events/events.kv')
+        Builder.load_file('profile/stickhand.kv')
+        Builder.load_file('profile/forward.kv')
+        Builder.load_file('profile/defense.kv')
+        Builder.load_file('profile/goalie.kv')
+        Builder.load_file('profile/competitive.kv')
+        Builder.load_file('profile/highest_level.kv')  # Load the highest_level.kv file
 
         root = Builder.load_file('main.kv')
         self.check_verification(root)
