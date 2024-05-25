@@ -1,53 +1,87 @@
 <EmailScreen>:
-    name: 'email'  # Set the name of the screen
+    name: 'email'
+    email: email_input.text
+    password: password_input.text
     BoxLayout:
-        orientation: 'vertical'  # Set the orientation to vertical
-        padding: dp(20)  # Set padding
-        spacing: dp(20)  # Set spacing
-        MDLabel:
-            text: "Welcome to Social Hockey"  # Welcome message
-            halign: 'center'  # Center the label horizontally
-            font_style: 'H4'  # Set font style
-        MDLabel:
-            text: "Please Join to Better Your Hockey Experience"  # Additional message
-            halign: 'center'  # Center the label horizontally
-            font_style: 'Subtitle1'  # Set font style
-        Widget:
-            size_hint_y: None
-            height: dp(50)  # Add spacing between the welcome message and the email field
-        MDTextField:
-            id: email_field
-            hint_text: "Enter your email"  # Hint text for the email field
-            helper_text: "Email format: user@example.com"  # Helper text displayed when the field is focused
-            helper_text_mode: "on_focus"  # Show helper text only when the field is focused
-            pos_hint: {"center_x": 0.5}  # Center the email field horizontally
-            size_hint: (0.8, None)  # Set size hint
-            height: dp(40)  # Set height
-            on_text:
-                root.email = self.text  # Update the email property with the text field input
-                submit_btn.disabled = not (root.validate_email() and root.validate_password())  # Enable/disable submit button based on email validation
-        MDTextField:
-            id: password_field
-            hint_text: "Enter your password"  # Hint text for the password field
-            password: True  # Mask the password input
-            pos_hint: {"center_x": 0.5}  # Center the password field horizontally
-            size_hint: (0.8, None)  # Set size hint
-            height: dp(40)  # Set height
-            on_text:
-                root.password = self.text  # Update the password property with the text field input
-                submit_btn.disabled = not (root.validate_email() and root.validate_password())  # Enable/disable submit button based on password presence
-        Widget:
-            size_hint_y: None
-            height: dp(20)  # Add spacing between the password field and the submit button
-        MDRaisedButton:
-            id: submit_btn
-            text: "Submit"  # Text for the submit button
-            pos_hint: {"center_x": 0.5}  # Center the submit button horizontally
-            size_hint: (0.5, None)  # Set size hint
-            height: dp(40)  # Set height
-            disabled: True  # Initially disable the submit button
-            on_release:
-                root.submit_email()  # Call submit_email method on button release
-        Widget:
-            size_hint_y: None
-            height: dp(50)  # Add spacing below the submit button to keep it above the bottom
+        orientation: 'vertical'
+
+        MDTopAppBar:
+            title: 'Profile'
+            left_action_items: [['menu', lambda x: app.root.toggle_nav_drawer()]]
+            pos_hint: {"top": 1}
+
+        BoxLayout:
+            orientation: 'vertical'
+            padding: dp(20)
+            spacing: dp(20)
+
+            Widget:  # Spacer to push content down
+                size_hint_y: 1
+
+            MDBoxLayout:
+                orientation: 'vertical'
+                size_hint_y: None
+                height: self.minimum_height
+                padding: dp(10)
+                spacing: dp(5)
+                canvas.before:
+                    Color:
+                        rgba: root.background_primary  # Dynamic background color
+                    Line:
+                        width: 2
+                        rectangle: (self.x, self.y, self.width, self.height)
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [20,]
+
+                MDLabel:
+                    text: 'Enter Your Email'
+                    halign: 'center'
+                    font_style: 'H5'
+                    size_hint_y: None
+                    height: self.texture_size[1] + dp(10)
+                    theme_text_color: 'Custom'
+                    text_color: root.label_fontprimary
+
+                MDTextField:
+                    id: email_input
+                    hint_text: "Email"
+                    size_hint_y: None
+                    height: dp(40)
+                    pos_hint: {"center_x": 0.5}
+                    halign: 'center'
+                    text_color_normal: root.textfield_fontprimary  # Set text color dynamically
+                    text_color_focus: root.textfield_fontprimary  # Set focus color dynamically
+                    helper_text_mode: 'on_error'
+                    helper_text: 'Invalid email format'
+                    on_text: root.validate_fields()
+
+                MDTextField:
+                    id: password_input
+                    hint_text: "Password"
+                    size_hint_y: None
+                    height: dp(40)
+                    pos_hint: {"center_x": 0.5}
+                    halign: 'center'
+                    password: True
+                    text_color_normal: root.textfield_fontprimary  # Set text color dynamically
+                    text_color_focus: root.textfield_fontprimary  # Set focus color dynamically
+                    helper_text_mode: 'on_error'
+                    helper_text: 'At least 4 characters, not all the same'
+                    on_text: root.validate_fields()
+
+                MDRaisedButton:
+                    id: submit_button
+                    text: 'SUBMIT'
+                    size_hint_y: None
+                    height: dp(48)
+                    size_hint_x: 0.5
+                    pos_hint: {"center_x": 0.5}  # Center the button horizontally
+                    on_release: root.submit_email()
+                    text_color: root.button_fontprimary  # Dynamic font color for button
+                    on_press: self.md_bg_color = root.button_pressed  # Change background color on press
+                    disabled: True  # Initially disabled
+
+            Widget:  # Spacer to push content up
+                size_hint_y: 1

@@ -1,9 +1,8 @@
+import os
+import json
 from kivy.lang import Builder
 from kivy.core.window import Window
 from kivymd.app import MDApp
-import os
-import json
-
 from kivymd.uix.screenmanager import MDScreenManager
 from kivymd.uix.navigationdrawer import MDNavigationLayout, MDNavigationDrawer
 from navigationdrawer import ContentNavigationDrawer
@@ -11,16 +10,16 @@ from settings.right_navigationdrawer import SettingsRightNavigationDrawer
 from home.home import HomeScreen
 from settings.settings import SettingsScreen, Screen1, Screen2
 from profile.profile import ProfileScreen
-from profile.stickhand import StickHandScreen  # Import the StickHandScreen
-from profile.forward import ForwardScreen  # Import the ForwardScreen
-from profile.defense import DefenseScreen  # Import the DefenseScreen
-from profile.goalie import GoalieScreen  # Import the GoalieScreen
-from profile.competitive import CompetitiveScreen  # Import the CompetitiveScreen
 from email.email import EmailScreen
 from email.verification import VerificationScreen
-from events.events import EventScreen  # Import the EventScreen
-from profile.highest_level import HighestLevelScreen  # Import the HighestLevelScreen
-from profile.current_level import CurrentLevelScreen  # Import the CurrentLevelScreen
+from events.events import EventScreen
+from profile.stickhand import StickHandScreen
+from profile.forward import ForwardScreen
+from profile.defense import DefenseScreen
+from profile.goalie import GoalieScreen
+from profile.competitive import CompetitiveScreen
+from profile.highest_level import HighestLevelScreen
+from profile.current_level import CurrentLevelScreen
 
 class MainApp(MDApp):
     def build(self):
@@ -42,16 +41,15 @@ class MainApp(MDApp):
         Builder.load_file('profile/goalie.kv')
         Builder.load_file('profile/competitive.kv')
         Builder.load_file('profile/highest_level.kv')
-        Builder.load_file('profile/current_level.kv')  # Load the current_level.kv file
+        Builder.load_file('profile/current_level.kv')
 
         root = Builder.load_file('main.kv')
-        self.check_verification(root)
+        self.check_user_data(root)
         return root
 
-    def check_verification(self, root):
+    def check_user_data(self, root):
         """
-        Check if the user is verified when the application starts.
-        If verified, navigate directly to the stickhand screen.
+        Check the user_data.json file to determine which screen to navigate to.
         """
         data_directory = os.path.join(os.path.dirname(__file__), 'data')
         file_path = os.path.join(data_directory, 'user_data.json')
@@ -60,10 +58,20 @@ class MainApp(MDApp):
             with open(file_path, 'r') as f:
                 try:
                     user_data = json.load(f)
-                    if user_data.get('verified'):
+                    email = user_data.get('email')
+                    password = user_data.get('password')
+                    verified = user_data.get('verified', False)
+
+                    if not email or not password:
+                        root.ids.screen_manager.current = 'email'
+                    elif not verified:
+                        root.ids.screen_manager.current = 'verification'
+                    else:
                         root.ids.screen_manager.current = 'stickhand'
                 except json.JSONDecodeError:
-                    pass
+                    root.ids.screen_manager.current = 'email'
+        else:
+            root.ids.screen_manager.current = 'email'
 
 if __name__ == '__main__':
     MainApp().run()
