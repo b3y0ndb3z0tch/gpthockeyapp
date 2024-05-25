@@ -13,6 +13,9 @@ from settings.settings import SettingsScreen, Screen1, Screen2
 from profile.profile import ProfileScreen
 from profile.stickhand import StickHandScreen  # Import the StickHandScreen
 from profile.forward import ForwardScreen  # Import the ForwardScreen
+from profile.defense import DefenseScreen  # Import the DefenseScreen
+from profile.goalie import GoalieScreen  # Import the GoalieScreen
+from profile.competitive import CompetitiveScreen  # Import the CompetitiveScreen
 from email.email import EmailScreen
 from email.verification import VerificationScreen
 from events.events import EventScreen  # Import the EventScreen
@@ -30,6 +33,9 @@ class MainApp(MDApp):
         Builder.load_file('profile/profile.kv')
         Builder.load_file('profile/stickhand.kv')  # Load the stickhand.kv file
         Builder.load_file('profile/forward.kv')  # Load the forward.kv file
+        Builder.load_file('profile/defense.kv')  # Load the defense.kv file
+        Builder.load_file('profile/goalie.kv')  # Load the goalie.kv file
+        Builder.load_file('profile/competitive.kv')  # Load the competitive.kv file
         Builder.load_file('email/email.kv')
         Builder.load_file('email/verification.kv')
         Builder.load_file('events/events.kv')  # Load the events.kv file

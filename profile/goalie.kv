@@ -1,5 +1,5 @@
-<StickHandScreen>:
-    name: 'stickhand'
+<GoalieScreen>:
+    name: 'goalie'
     BoxLayout:
         orientation: 'vertical'
 
@@ -33,7 +33,7 @@
                         radius: [20,]  # Increased radius to enhance sign appearance
 
                 MDLabel:
-                    text: 'STICK HAND'
+                    text: 'Do you play Goalie?'
                     halign: 'center'
                     font_style: 'H4'
                     size_hint_y: None
@@ -49,16 +49,16 @@
                 padding: [dp(40), 0]
 
                 MDRaisedButton:
-                    text: 'LEFT HAND'
+                    text: 'YES'
                     size_hint_x: 0.5
-                    on_release: root.save_stick_hand('Left')
+                    on_release: root.save_goalie('Yes')
                     text_color: root.button_fontprimary  # Dynamic font color for button
                     on_press: self.md_bg_color = root.button_pressed  # Change background color on press
 
                 MDRaisedButton:
-                    text: 'RIGHT HAND'
+                    text: 'NO'
                     size_hint_x: 0.5
-                    on_release: root.save_stick_hand('Right')
+                    on_release: root.save_goalie('No')
                     text_color: root.button_fontprimary  # Dynamic font color for button
                     on_press: self.md_bg_color = root.button_pressed  # Change background color on press
 

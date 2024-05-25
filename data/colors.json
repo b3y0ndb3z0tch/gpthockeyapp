@@ -1,0 +1,8 @@
+{
+    "background_primary": [0.2, 0.6, 0.8, 1],
+    "label_fontprimary": [1, 1, 1, 1],
+    "button_fontprimary": [0, 0, 0, 1],
+    "button_pressed": [0.9, 0.1, 0.1, 1],
+    "slider_active": [0.4, 0.8, 0.4, 1],
+    "slider_inactive": [0.7, 0.7, 0.7, 1]
+}

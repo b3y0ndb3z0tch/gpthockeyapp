@@ -5,7 +5,7 @@ from kivy.uix.screenmanager import Screen
 from kivy.properties import StringProperty, ListProperty
 
 # Define the path for the .kv file
-kv_file_path = os.path.join(os.path.dirname(__file__), 'forward.kv')
+kv_file_path = os.path.join(os.path.dirname(__file__), 'goalie.kv')
 Builder.load_file(kv_file_path)
 
 # Load user profile data and colors
@@ -28,7 +28,7 @@ def load_colors():
     return {}
 
 
-class ForwardScreen(Screen):
+class GoalieScreen(Screen):
     user_name = StringProperty("")
     background_primary = ListProperty([0.2, 0.6, 0.8, 1])
     label_fontprimary = ListProperty([1, 1, 1, 1])
@@ -44,12 +44,12 @@ class ForwardScreen(Screen):
         self.button_fontprimary = colors.get('button_fontprimary', [0, 0, 0, 1])
         self.button_pressed = colors.get('button_pressed', [0.9, 0.1, 0.1, 1])
 
-    def save_forward(self, play_forward):
+    def save_goalie(self, play_goalie):
         """
-        Save the user's answer about playing forward to the profile and navigate to the next screen.
+        Save the user's answer about playing goalie to the profile and navigate to the next screen.
         """
         user_profile = load_user_profile()
-        user_profile['forward'] = (play_forward == 'Yes')
+        user_profile['goalie'] = (play_goalie == 'Yes')
 
         data_directory = os.path.join(os.path.dirname(__file__), '../data')
         file_path = os.path.join(data_directory, 'user_profile.json')
@@ -57,5 +57,5 @@ class ForwardScreen(Screen):
         with open(file_path, 'w') as f:
             json.dump(user_profile, f, indent=4)
 
-        print(f"Do you play forward: {user_profile['forward']}")
-        self.manager.current = 'defense'  # Navigate to the DefenseScreen
+        print(f"Do you play goalie: {user_profile['goalie']}")
+        self.manager.current = 'competitive'  # Navigate to the CompetitiveScreen

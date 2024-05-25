@@ -1,5 +1,5 @@
-<StickHandScreen>:
-    name: 'stickhand'
+<DefenseScreen>:
+    name: 'defense'
     BoxLayout:
         orientation: 'vertical'
 
@@ -33,11 +33,20 @@
                         radius: [20,]  # Increased radius to enhance sign appearance
 
                 MDLabel:
-                    text: 'STICK HAND'
+                    text: 'Do you play Defense?'
                     halign: 'center'
                     font_style: 'H4'
                     size_hint_y: None
                     height: self.texture_size[1] + dp(20)
+                    theme_text_color: 'Custom'
+                    text_color: root.label_fontprimary  # Dynamic font color for label
+
+                MDLabel:
+                    text: 'Multiple Positions Allowed'
+                    halign: 'center'
+                    font_style: 'Caption'
+                    size_hint_y: None
+                    height: self.texture_size[1] + dp(10)
                     theme_text_color: 'Custom'
                     text_color: root.label_fontprimary  # Dynamic font color for label
 
@@ -49,16 +58,16 @@
                 padding: [dp(40), 0]
 
                 MDRaisedButton:
-                    text: 'LEFT HAND'
+                    text: 'YES'
                     size_hint_x: 0.5
-                    on_release: root.save_stick_hand('Left')
+                    on_release: root.save_defense('Yes')
                     text_color: root.button_fontprimary  # Dynamic font color for button
                     on_press: self.md_bg_color = root.button_pressed  # Change background color on press
 
                 MDRaisedButton:
-                    text: 'RIGHT HAND'
+                    text: 'NO'
                     size_hint_x: 0.5
-                    on_release: root.save_stick_hand('Right')
+                    on_release: root.save_defense('No')
                     text_color: root.button_fontprimary  # Dynamic font color for button
                     on_press: self.md_bg_color = root.button_pressed  # Change background color on press
 

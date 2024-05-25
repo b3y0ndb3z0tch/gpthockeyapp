@@ -1,0 +1,106 @@
+<CompetitiveScreen>:
+    name: 'competitive'
+    BoxLayout:
+        orientation: 'vertical'
+
+        MDTopAppBar:
+            title: 'Profile'
+            left_action_items: [['menu', lambda x: app.root.toggle_nav_drawer()]]
+
+        BoxLayout:
+            orientation: 'vertical'
+            padding: dp(20)
+            spacing: dp(20)
+
+            Widget:  # Spacer to push the content down
+                size_hint_y: 1
+
+            MDBoxLayout:
+                orientation: 'vertical'
+                size_hint_y: None
+                height: self.minimum_height
+                padding: dp(20)  # Increased padding to make white space larger
+                spacing: dp(10)
+                canvas.before:
+                    Color:
+                        rgba: root.background_primary  # Dynamic background color
+                    Line:
+                        width: 2
+                        rectangle: (self.x, self.y, self.width, self.height)
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [20,]  # Increased radius to enhance sign appearance
+
+                MDLabel:
+                    text: 'Social'
+                    halign: 'center'
+                    font_style: 'H4'
+                    size_hint_y: None
+                    height: self.texture_size[1] + dp(20)
+                    theme_text_color: 'Custom'
+                    text_color: root.label_fontprimary  # Dynamic font color for label
+
+                MDSlider:
+                    id: social_slider
+                    min: 0
+                    max: 10
+                    value: 5
+                    color: root.slider_active
+                    hint: False
+                    active_color: root.slider_active
+                    inactive_color: root.slider_inactive
+
+                MDLabel:
+                    text: 'Competitive'
+                    halign: 'center'
+                    font_style: 'H4'
+                    size_hint_y: None
+                    height: self.texture_size[1] + dp(20)
+                    theme_text_color: 'Custom'
+                    text_color: root.label_fontprimary  # Dynamic font color for label
+
+                MDSlider:
+                    id: competitive_slider
+                    min: 0
+                    max: 10
+                    value: 5
+                    color: root.slider_active
+                    hint: False
+                    active_color: root.slider_active
+                    inactive_color: root.slider_inactive
+
+                MDLabel:
+                    text: 'Skill'
+                    halign: 'center'
+                    font_style: 'H4'
+                    size_hint_y: None
+                    height: self.texture_size[1] + dp(20)
+                    theme_text_color: 'Custom'
+                    text_color: root.label_fontprimary  # Dynamic font color for label
+
+                MDSlider:
+                    id: skill_slider
+                    min: 0
+                    max: 10
+                    value: 5
+                    color: root.slider_active
+                    hint: False
+                    active_color: root.slider_active
+                    inactive_color: root.slider_inactive
+
+            MDRaisedButton:
+                text: 'NEXT'
+                size_hint_y: None
+                height: dp(48)
+                on_release:
+                    root.save_competitive(
+                    social_slider.value,
+                    competitive_slider.value,
+                    skill_slider.value
+                    )
+                text_color: root.button_fontprimary  # Dynamic font color for button
+                on_press: self.md_bg_color = root.button_pressed  # Change background color on press
+
+            Widget:  # Spacer to keep content in the middle
+                size_hint_y: 1
