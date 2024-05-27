@@ -1,0 +1,17 @@
+{
+    "right_handed": true,
+    "forward": true,
+    "defense": true,
+    "goalie": false,
+    "social": 10.0,
+    "competitive": 7.0,
+    "skill": 7.0,
+    "highest_level": {
+        "tier": "Platinum",
+        "level": "5 (Lowest)"
+    },
+    "current_level": {
+        "tier": "Platinum",
+        "level": "5 (Lowest)"
+    }
+}
