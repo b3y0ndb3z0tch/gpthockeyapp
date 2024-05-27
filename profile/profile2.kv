@@ -1,0 +1,141 @@
+<Profile2Screen>:
+    name: 'profile2'
+    BoxLayout:
+        orientation: 'vertical'
+
+        MDTopAppBar:
+            title: 'Profile'
+            left_action_items: [['menu', lambda x: app.root.toggle_nav_drawer()]]
+            pos_hint: {"top": 1}
+
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+            BoxLayout:
+                orientation: 'vertical'
+                padding: dp(20)
+                spacing: dp(20)
+                size_hint_y: None
+                height: self.minimum_height
+
+                Widget:  # Spacer to push content down
+                    size_hint_y: 1
+
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    size_hint_y: None
+                    height: self.minimum_height
+                    padding: dp(10)
+                    spacing: dp(5)
+                    canvas.before:
+                        Color:
+                            rgba: root.background_primary  # Dynamic background color
+                        Line:
+                            width: 2
+                            rectangle: (self.x, self.y, self.width, self.height)
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [20,]
+
+                    MDLabel:
+                        text: 'Highest Level Played'
+                        halign: 'center'
+                        font_style: 'H5'
+                        size_hint_y: None
+                        height: self.texture_size[1] + dp(10)
+                        theme_text_color: 'Custom'
+                        text_color: root.label_fontprimary
+
+                    MDLabel:
+                        text: 'Tier'
+                        halign: 'center'
+                        font_style: 'H5'
+                        size_hint_y: None
+                        height: self.texture_size[1] + dp(10)
+                        theme_text_color: 'Custom'
+                        text_color: root.label_fontprimary
+
+                    MDTextField:
+                        id: highest_tier_dropdown
+                        hint_text: "Select Tier"
+                        on_focus: if self.focus: root.tier_menu.open()
+                        halign: 'center'
+                        size_hint_y: None
+                        height: dp(40)
+                        text: "Silver (Default)"  # Set default value
+
+                    MDLabel:
+                        text: 'Level'
+                        halign: 'center'
+                        font_style: 'H5'
+                        size_hint_y: None
+                        height: self.texture_size[1] + dp(10)
+                        theme_text_color: 'Custom'
+                        text_color: root.label_fontprimary
+
+                    MDTextField:
+                        id: highest_level_dropdown
+                        hint_text: "Select Level"
+                        on_focus: if self.focus: root.level_menu.open()
+                        halign: 'center'
+                        size_hint_y: None
+                        height: dp(40)
+                        text: "3 (Default)"  # Set default value
+
+                    MDLabel:
+                        text: 'Current Level Playing'
+                        halign: 'center'
+                        font_style: 'H5'
+                        size_hint_y: None
+                        height: self.texture_size[1] + dp(10)
+                        theme_text_color: 'Custom'
+                        text_color: root.label_fontprimary
+
+                    MDLabel:
+                        text: 'Tier'
+                        halign: 'center'
+                        font_style: 'H5'
+                        size_hint_y: None
+                        height: self.texture_size[1] + dp(10)
+                        theme_text_color: 'Custom'
+                        text_color: root.label_fontprimary
+
+                    MDTextField:
+                        id: current_tier_dropdown
+                        hint_text: "Select Tier"
+                        on_focus: if self.focus: root.current_tier_menu.open()
+                        halign: 'center'
+                        size_hint_y: None
+                        height: dp(40)
+                        text: "Silver (Default)"  # Set default value
+
+                    MDLabel:
+                        text: 'Level'
+                        halign: 'center'
+                        font_style: 'H5'
+                        size_hint_y: None
+                        height: self.texture_size[1] + dp(10)
+                        theme_text_color: 'Custom'
+                        text_color: root.label_fontprimary
+
+                    MDTextField:
+                        id: current_level_dropdown
+                        hint_text: "Select Level"
+                        on_focus: if self.focus: root.current_level_menu.open()
+                        halign: 'center'
+                        size_hint_y: None
+                        height: dp(40)
+                        text: "3 (Default)"  # Set default value
+
+        FloatLayout:
+            size_hint_y: None
+            height: dp(60)
+
+            MDRaisedButton:
+                text: 'NEXT'
+                size_hint_x: 0.5
+                pos_hint: {"center_x": 0.5, "y": 0.1}
+                on_release: root.change_screen()
+                text_color: root.button_fontprimary  # Dynamic font color for button
+                on_press: self.md_bg_color = root.button_pressed  # Change background color on press

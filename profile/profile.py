@@ -2,10 +2,6 @@ import os
 import json
 from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen
-from kivymd.uix.button import MDRaisedButton
-from kivymd.uix.label import MDLabel
-from kivymd.uix.selectioncontrol import MDCheckbox
-from kivymd.uix.boxlayout import MDBoxLayout
 from kivy.properties import StringProperty, BooleanProperty
 
 # Define the path for the .kv file
@@ -16,13 +12,11 @@ Builder.load_file(kv_file_path)
 data_folder = os.path.join(os.path.dirname(__file__), '../data')
 user_profile_file = os.path.join(data_folder, 'user_profile.json')
 
-
 def load_user_profile():
     if os.path.exists(user_profile_file):
         with open(user_profile_file, 'r') as file:
             return json.load(file)
     return {}
-
 
 class ProfileScreen(Screen):
     user_name = StringProperty("")
@@ -65,7 +59,10 @@ class ProfileScreen(Screen):
         """
         Save the user profile information to a JSON file and print status to console.
         """
-        profile_data = {
+        profile_data = load_user_profile()  # Load the existing profile data
+
+        # Update the profile data with current screen's data
+        profile_data.update({
             'user_name': self.user_name,
             'left_wing': self.ids.left_wing_checkbox.active,
             'center': self.ids.center_checkbox.active,
@@ -75,7 +72,7 @@ class ProfileScreen(Screen):
             'shoot_left': self.ids.left_hand_checkbox.active,
             'shoot_right': self.ids.right_hand_checkbox.active,
             'goalie': self.ids.goalie_checkbox.active
-        }
+        })
 
         self.print_profile_data(profile_data)
         self.save_profile_data(profile_data)
@@ -103,7 +100,6 @@ class ProfileScreen(Screen):
 
     def go_to_next_screen(self):
         """
-        Save the profile and navigate to the next screen.
+        Navigate to the next screen without saving the entire profile.
         """
-        self.save_user_profile()
         self.manager.current = 'profile2'

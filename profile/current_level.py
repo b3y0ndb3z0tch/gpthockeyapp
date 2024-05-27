@@ -1,10 +1,10 @@
+# profile/current_level.py
 import os
 import json
 from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen
 from kivy.properties import StringProperty, ListProperty
 from kivymd.uix.menu import MDDropdownMenu
-from kivymd.uix.textfield import MDTextField
 
 # Define the path for the .kv file
 kv_file_path = os.path.join(os.path.dirname(__file__), 'current_level.kv')
@@ -116,5 +116,5 @@ class CurrentLevelScreen(Screen):
             json.dump(user_profile, f, indent=4)
 
         print(f"Current Level Playing - Tier: {tier}, Level: {level}")
-        # Navigate to the next screen, e.g., 'next_screen'
-        #self.manager.current = 'next_screen'
+        # Navigate to the next screen, e.g., 'profile'
+        self.manager.current = 'profile'

@@ -3,15 +3,23 @@
     "forward": true,
     "defense": true,
     "goalie": false,
-    "social": 10.0,
-    "competitive": 7.0,
-    "skill": 7.0,
+    "social": 5,
+    "competitive": 6.5,
+    "skill": 6.5,
     "highest_level": {
-        "tier": "Platinum",
-        "level": "5 (Lowest)"
+        "tier": "Silver (Default)",
+        "level": "4"
     },
     "current_level": {
-        "tier": "Platinum",
+        "tier": "Professional",
         "level": "5 (Lowest)"
-    }
+    },
+    "user_name": "",
+    "left_wing": false,
+    "center": true,
+    "right_wing": false,
+    "left_defense": true,
+    "right_defense": false,
+    "shoot_left": false,
+    "shoot_right": true
 }

@@ -20,6 +20,7 @@ from profile.goalie import GoalieScreen
 from profile.competitive import CompetitiveScreen
 from profile.highest_level import HighestLevelScreen
 from profile.current_level import CurrentLevelScreen
+from profile.profile2 import Profile2Screen
 
 class MainApp(MDApp):
     def build(self):
@@ -42,6 +43,7 @@ class MainApp(MDApp):
         Builder.load_file('profile/competitive.kv')
         Builder.load_file('profile/highest_level.kv')
         Builder.load_file('profile/current_level.kv')
+        Builder.load_file('profile/profile2.kv')
 
         root = Builder.load_file('main.kv')
         self.check_user_data(root)
@@ -52,10 +54,13 @@ class MainApp(MDApp):
         Check the user_data.json file to determine which screen to navigate to.
         """
         data_directory = os.path.join(os.path.dirname(__file__), 'data')
-        file_path = os.path.join(data_directory, 'user_data.json')
+        user_data_path = os.path.join(data_directory, 'user_data.json')
+        user_profile_path = os.path.join(data_directory, 'user_profile.json')
 
-        if os.path.exists(file_path):
-            with open(file_path, 'r') as f:
+        if os.path.exists(user_profile_path):
+            root.ids.screen_manager.current = 'profile'
+        elif os.path.exists(user_data_path):
+            with open(user_data_path, 'r') as f:
                 try:
                     user_data = json.load(f)
                     email = user_data.get('email')
