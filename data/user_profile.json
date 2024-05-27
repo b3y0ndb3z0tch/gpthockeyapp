@@ -1,25 +1,3 @@
 {
-    "right_handed": true,
-    "forward": true,
-    "defense": true,
-    "goalie": false,
-    "social": 5,
-    "competitive": 6.5,
-    "skill": 6.5,
-    "highest_level": {
-        "tier": "Silver (Default)",
-        "level": "4"
-    },
-    "current_level": {
-        "tier": "Professional",
-        "level": "5 (Lowest)"
-    },
-    "user_name": "",
-    "left_wing": false,
-    "center": true,
-    "right_wing": false,
-    "left_defense": true,
-    "right_defense": false,
-    "shoot_left": false,
-    "shoot_right": true
+    "right_hand": true
 }

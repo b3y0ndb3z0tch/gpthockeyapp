@@ -1,0 +1,115 @@
+<ProfileStickHandScreen>:
+    name: 'profile_stickhand'
+    BoxLayout:
+        orientation: 'vertical'
+
+        MDTopAppBar:
+            title: 'Profile'
+            left_action_items: [['menu', lambda x: app.root.toggle_nav_drawer()]]
+            pos_hint: {"top": 1}
+
+        BoxLayout:
+            orientation: 'vertical'
+            padding: dp(20)
+            spacing: dp(10)
+
+            Widget:  # Spacer to move the Stick Hand label down
+                size_hint_y: None
+                height: dp(20)
+
+            MDBoxLayout:
+                orientation: 'vertical'
+                padding: dp(10)
+                spacing: dp(5)
+                size_hint_y: None
+                height: self.minimum_height
+                canvas.before:
+                    Color:
+                        rgba: root.background_primary  # Use primary background color
+                    Line:
+                        width: 2
+                        rectangle: (self.x, self.y, self.width, self.height)
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [20,]
+
+                MDLabel:
+                    text: 'Stick Hand'
+                    halign: 'center'
+                    font_style: 'H5'
+                    size_hint_y: None
+                    height: self.texture_size[1] + dp(10)
+                    theme_text_color: 'Custom'
+                    text_color: root.label_fontprimary
+
+            MDBoxLayout:
+                orientation: 'vertical'
+                padding: dp(10)
+                spacing: dp(5)
+                size_hint_y: None
+                height: self.minimum_height
+                canvas.before:
+                    Color:
+                        rgba: root.background_primary_opaque
+                    Line:
+                        width: 2
+                        rectangle: (self.x, self.y, self.width, self.height)
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [20,]
+
+                MDBoxLayout:
+                    orientation: 'horizontal'
+                    size_hint_y: None
+                    height: dp(40)
+                    spacing: dp(10)
+
+                    MDCheckbox:
+                        id: left_hand_checkbox
+                        group: 'stick_hand'
+                        on_active: root.on_checkbox_active(self, self.active, False)
+
+                    MDLabel:
+                        text: 'Left Hand'
+                        halign: 'left'
+                        theme_text_color: 'Custom'
+                        text_color: root.label_fontprimary
+
+                MDBoxLayout:
+                    orientation: 'horizontal'
+                    size_hint_y: None
+                    height: dp(40)
+                    spacing: dp(10)
+
+                    MDCheckbox:
+                        id: right_hand_checkbox
+                        group: 'stick_hand'
+                        on_active: root.on_checkbox_active(self, self.active, True)
+
+                    MDLabel:
+                        text: 'Right Hand'
+                        halign: 'left'
+                        theme_text_color: 'Custom'
+                        text_color: root.label_fontprimary
+
+            Widget:
+                size_hint_y: None
+                height: dp(10)
+
+            MDRaisedButton:
+                text: 'NEXT'
+                size_hint_y: None
+                height: dp(48)
+                size_hint_x: 0.5
+                pos_hint: {"center_x": 0.5}
+                on_release: app.root.current = 'profile_forward'
+                text_color: root.button_fontprimary
+                on_press: self.md_bg_color = root.button_pressed
+
+        Widget:  # Spacer to push the button up
+            size_hint_y: None
+            height: dp(10)
+
+        MDBottomNavigationCustom:

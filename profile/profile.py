@@ -2,21 +2,31 @@ import os
 import json
 from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen
-from kivy.properties import StringProperty, BooleanProperty
+from kivy.properties import StringProperty, BooleanProperty, ListProperty
 
 # Define the path for the .kv file
 kv_file_path = os.path.join(os.path.dirname(__file__), 'profile.kv')
 Builder.load_file(kv_file_path)
 
-# Load user profile data
+# Load user profile data and colors
 data_folder = os.path.join(os.path.dirname(__file__), '../data')
 user_profile_file = os.path.join(data_folder, 'user_profile.json')
+colors_file = os.path.join(data_folder, 'colors.json')
+
 
 def load_user_profile():
     if os.path.exists(user_profile_file):
         with open(user_profile_file, 'r') as file:
             return json.load(file)
     return {}
+
+
+def load_colors():
+    if os.path.exists(colors_file):
+        with open(colors_file, 'r') as file:
+            return json.load(file)
+    return {}
+
 
 class ProfileScreen(Screen):
     user_name = StringProperty("")
@@ -29,6 +39,11 @@ class ProfileScreen(Screen):
     shoot_right_checked = BooleanProperty(False)
     goalie_checked = BooleanProperty(False)
 
+    background_primary = ListProperty([0.2, 0.6, 0.8, 1])
+    label_fontprimary = ListProperty([1, 1, 1, 1])
+    button_fontprimary = ListProperty([0, 0, 0, 1])
+    button_pressed = ListProperty([0.9, 0.1, 0.1, 1])
+
     def on_pre_enter(self):
         user_profile = load_user_profile()
         self.user_name = user_profile.get('user_name', "")
@@ -40,6 +55,13 @@ class ProfileScreen(Screen):
         self.shoot_left_checked = user_profile.get('shoot_left', False)
         self.shoot_right_checked = user_profile.get('shoot_right', False)
         self.goalie_checked = user_profile.get('goalie', False)
+
+        colors = load_colors()
+        self.background_primary = colors.get('background_primary', [0.2, 0.6, 0.8, 1])
+        self.label_fontprimary = colors.get('label_fontprimary', [1, 1, 1, 1])
+        self.button_fontprimary = colors.get('button_fontprimary', [0, 0, 0, 1])
+        self.button_pressed = colors.get('button_pressed', [0.9, 0.1, 0.1, 1])
+
         self.update_checkboxes()
 
     def update_checkboxes(self):
@@ -59,11 +81,8 @@ class ProfileScreen(Screen):
         """
         Save the user profile information to a JSON file and print status to console.
         """
-        profile_data = load_user_profile()  # Load the existing profile data
-
-        # Update the profile data with current screen's data
+        profile_data = load_user_profile()
         profile_data.update({
-            'user_name': self.user_name,
             'left_wing': self.ids.left_wing_checkbox.active,
             'center': self.ids.center_checkbox.active,
             'right_wing': self.ids.right_wing_checkbox.active,
@@ -100,6 +119,6 @@ class ProfileScreen(Screen):
 
     def go_to_next_screen(self):
         """
-        Navigate to the next screen without saving the entire profile.
+        Navigate to the next screen.
         """
         self.manager.current = 'profile2'

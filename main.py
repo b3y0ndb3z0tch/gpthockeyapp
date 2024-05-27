@@ -21,7 +21,9 @@ from profile.competitive import CompetitiveScreen
 from profile.highest_level import HighestLevelScreen
 from profile.current_level import CurrentLevelScreen
 from profile.profile2 import Profile2Screen
-
+from profile.profile_stickhand import ProfileStickHandScreen
+from profile.profile_forward import ProfileForwardScreen
+from profile.bottom_navigation import MDBottomNavigationCustom, BottomNavigationItemStickhand, BottomNavigationItemForward, BottomNavigationItemDefense, BottomNavigationItemGoalie
 class MainApp(MDApp):
     def build(self):
         Window.size = (350, 600)
@@ -44,6 +46,11 @@ class MainApp(MDApp):
         Builder.load_file('profile/highest_level.kv')
         Builder.load_file('profile/current_level.kv')
         Builder.load_file('profile/profile2.kv')
+        Builder.load_file('profile/profile_stickhand.kv')
+        Builder.load_file('profile/profile_defense.kv')
+        Builder.load_file('profile/profile_forward.kv')
+        Builder.load_file('profile/profile_goalie.kv')
+        Builder.load_file('profile/bottom_navigation.kv')
 
         root = Builder.load_file('main.kv')
         self.check_user_data(root)
@@ -58,7 +65,7 @@ class MainApp(MDApp):
         user_profile_path = os.path.join(data_directory, 'user_profile.json')
 
         if os.path.exists(user_profile_path):
-            root.ids.screen_manager.current = 'profile'
+            root.ids.screen_manager.current = 'profile_stickhand'
         elif os.path.exists(user_data_path):
             with open(user_data_path, 'r') as f:
                 try:
@@ -72,7 +79,7 @@ class MainApp(MDApp):
                     elif not verified:
                         root.ids.screen_manager.current = 'verification'
                     else:
-                        root.ids.screen_manager.current = 'stickhand'
+                        root.ids.screen_manager.current = 'profile_stickhand'
                 except json.JSONDecodeError:
                     root.ids.screen_manager.current = 'email'
         else:

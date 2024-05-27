@@ -1,5 +1,6 @@
 {
     "background_primary": [0.2, 0.6, 0.8, 1],
+    "background_primary_opaque": [0.2, 0.6, 0.8, 0.5],
     "label_fontprimary": [1, 1, 1, 1],
      "textfield_fontprimary": [1, 1, 1, 1],
     "button_fontprimary": [0, 0, 0, 1],
