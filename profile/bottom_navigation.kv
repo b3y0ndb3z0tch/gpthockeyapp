@@ -1,24 +1,26 @@
 <MDBottomNavigationCustom>:
     MDBottomNavigationItem:
-        name: 'stickhand'
+        name: 'profile_stickhand'
         text: 'Stick Hand'
         icon: 'hockey-sticks'
         on_tab_press: app.root.ids.screen_manager.current = 'profile_stickhand'
 
     MDBottomNavigationItem:
-        name: 'forward'
+        name: 'profile_forward'
         text: 'Forward'
         icon: 'run'
-        on_tab_press: app.root.ids.screen_manager.current = 'profile_forward'
+        on_tab_press:
+            app.root.ids.screen_manager.current = 'profile_forward'
+
 
     MDBottomNavigationItem:
-        name: 'defense'
+        name: 'profile_defense'
         text: 'Defense'
         icon: 'shield'
         on_tab_press: app.root.ids.screen_manager.current = 'profile_defense'
 
     MDBottomNavigationItem:
-        name: 'goalie'
+        name: 'profile_goalie'
         text: 'Goalie'
         icon: 'shield-account'
         on_tab_press: app.root.ids.screen_manager.current = 'profile_goalie'

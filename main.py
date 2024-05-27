@@ -23,6 +23,8 @@ from profile.current_level import CurrentLevelScreen
 from profile.profile2 import Profile2Screen
 from profile.profile_stickhand import ProfileStickHandScreen
 from profile.profile_forward import ProfileForwardScreen
+from profile.profile_defense import ProfileDefenseScreen
+from profile.profile_goalie import ProfileGoalieScreen
 from profile.bottom_navigation import MDBottomNavigationCustom, BottomNavigationItemStickhand, BottomNavigationItemForward, BottomNavigationItemDefense, BottomNavigationItemGoalie
 class MainApp(MDApp):
     def build(self):

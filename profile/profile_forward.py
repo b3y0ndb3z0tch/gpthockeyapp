@@ -43,12 +43,18 @@ class ProfileForwardScreen(Screen):
         self.background_primary_opaque = colors.get('background_primary_opaque', [0.2, 0.6, 0.8, 0.5])
 
     def on_checkbox_active(self, checkbox, value, position):
-        if value:
-            self.save_forward(position)
+        self.save_forward(position, value)
 
-    def save_forward(self, position):
+    def save_forward(self, position, value):
         user_profile = load_user_profile()
-        user_profile[position] = getattr(self.ids[f"{position}_checkbox"], 'active')
+        user_profile[position] = value
+
+        # Update the "forward" key based on the state of the checkboxes
+        user_profile['forward'] = (
+            user_profile.get('left_wing', False) or
+            user_profile.get('center', False) or
+            user_profile.get('right_wing', False)
+        )
 
         file_path = os.path.join(data_folder, 'user_profile.json')
 
@@ -56,6 +62,7 @@ class ProfileForwardScreen(Screen):
             json.dump(user_profile, f, indent=4)
 
         print(f"Forward - {position}: {user_profile[position]}")
+        print(f"Forward: {user_profile['forward']}")
 
     def load_colors(self):
         colors_file = os.path.join(data_folder, 'colors.json')

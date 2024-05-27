@@ -1,25 +1,22 @@
 from kivymd.uix.bottomnavigation import MDBottomNavigation, MDBottomNavigationItem
-from kivymd.app import MDApp
+from kivy.properties import ObjectProperty
 
 class MDBottomNavigationCustom(MDBottomNavigation):
-    pass
+    screen_manager = ObjectProperty()
+    nav_drawer = ObjectProperty()
 
 class BottomNavigationItemStickhand(MDBottomNavigationItem):
     def on_tab_press(self):
-        app = MDApp.get_running_app()
-        app.root.ids.screen_manager.current = 'profile_stickhand'
+        self.screen_manager.current = 'profile_stickhand'
 
 class BottomNavigationItemForward(MDBottomNavigationItem):
     def on_tab_press(self):
-        app = MDApp.get_running_app()
-        app.root.ids.screen_manager.current = 'profile_forward'
+        self.screen_manager.current = 'profile_forward'
 
 class BottomNavigationItemDefense(MDBottomNavigationItem):
     def on_tab_press(self):
-        app = MDApp.get_running_app()
-        app.root.ids.screen_manager.current = 'profile_defense'
+        self.screen_manager.current = 'profile_defense'
 
 class BottomNavigationItemGoalie(MDBottomNavigationItem):
     def on_tab_press(self):
-        app = MDApp.get_running_app()
-        app.root.ids.screen_manager.current = 'profile_goalie'
+        self.screen_manager.current = 'profile_goalie'

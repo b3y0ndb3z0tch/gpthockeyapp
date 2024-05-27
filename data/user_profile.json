@@ -1,3 +1,11 @@
 {
-    "right_hand": true
+    "right_hand": true,
+    "center": true,
+    "right_wing": false,
+    "left_wing": false,
+    "forward": true,
+    "right_defense": false,
+    "defense": false,
+    "left_defense": false,
+    "goalie": false
 }
